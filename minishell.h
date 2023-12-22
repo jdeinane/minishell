@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2023/12/20 23:55:08 by jubaldo          ###   ########.fr       */
+/*   Updated: 2023/12/22 14:08:42 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ typedef struct s_pipe
 
 typedef struct s_commands
 {
-	pid_t			*pid;
-	int				num_cmds;
-	int				num_exec;
 	int				*operators;
+	int				cmds_nb;
+	int				exec_nb;
 	int				exit_value;
 	char			**cmds;
 	char			**paths;
+	pid_t			*pid;
 	t_pipe			*pipe;
 	t_cmd			*cmd;
 	t_redirect		*redirect;

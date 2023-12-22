@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2023/12/14 22:14:44 by jubaldo          ###   ########.fr        #
+#    Updated: 2023/12/20 23:55:47 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ re:			fclean all
 
 info: bibou
 define BIBOU
-	welcome to brjoves' and jubaldo's
            _       _     _          _ _ 
           (_)     (_)   | |        | | |
  _ __ ___  _ _ __  _ ___| |__   ___| | |
