@@ -6,60 +6,67 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2023/12/22 16:12:07 by jubaldo          ###   ########.fr       */
+/*   Updated: 2023/12/28 12:08:24 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdio.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include <sys/types.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+#include <stdio.h>
+#include <signal.h>
+#include <stdbool.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-# define PWD	"PWD"
-# define OLDPWD	"OLDPWD"
+# define MAX_PATH 4096
 
-# define OR		1
-# define AND	2
-# define PIPE	3
+# define OLD_PWD "OLDPWD"
+# define PWD "PWD"
 
-# define CMD_NOT_EXEC	126
-# define CMD_NOT_FOUND	127
+# define STDOUT STDOUT_FILENO
+# define STDIN  STDIN_FILENO
+# define STDERR STDERR_FILENO
 
-# define STDIN		STDIN_FILENO
-# define STDOUT		STDOUT_FILENO
-# define STDERR		STDERR_FILENO
+# define CMD_NOT_EXEC   126
+# define CMD_NOT_FOUND  127
+
+# define OR     1
+# define AND    2
+# define PIPE   3
+
+typedef struct s_redirect
+{
+    bool	error;
+	int		fd_in;
+	int		fd_out;
+	int		stdin_backup;
+	int		stdout_backup;
+	int		cmd_index;
+	char	*in_file;
+	char	*out_file;
+	char	*heredoc_EOF;
+	bool	error;
+	int		cmd_index;
+
+}	t_redirect;
+
 
 typedef struct s_data
 {
-	char		**env;
+    char		**env;
 	char		*user_input;
 	char		*work_dir;
 	char		*old_work_dir;
 }	t_data;
-
-typedef struct s_redirect
-{
-	int		fd_in;
-	int		fd_out;
-	int		cmd_index;
-	int		stdin_backup;
-	int		stdout_backup;
-	char	*in_file;
-	char	*out_file;
-	char	*heredoc_eof;
-	bool	error;
-}	t_redirect;
 
 typedef struct s_cmd
 {
@@ -68,13 +75,6 @@ typedef struct s_cmd
 	char	**redirections;
 }	t_cmd;
 
-typedef struct s_index
-{
-	size_t	i;
-	size_t	j;
-	size_t	malloc_size;
-}	t_index;
-
 typedef struct s_pipe
 {
 	int	*fd;
@@ -82,18 +82,26 @@ typedef struct s_pipe
 
 typedef struct s_commands
 {
-	int				*operators;
-	int				cmds_nb;
-	int				exec_nb;
-	int				exit_value;
+	pid_t			*pid;
+	int				num_cmds;
+	int				num_exec;
 	char			**cmds;
 	char			**paths;
-	pid_t			*pid;
+	int				*operators;
+	int				exit_value;
 	t_pipe			*pipe;
+	t_redirect		*io;
 	t_cmd			*cmd;
-	t_redirect		*redirect;
 }	t_commands;
 
+typedef struct s_index_data
+{
+	size_t	i;
+	size_t	malloc_size;
+	size_t	j;
+}	t_index_data;
+
 extern int	g_status_code;
+
 
 #endif 
