@@ -6,26 +6,26 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2023/12/28 12:08:24 by jubaldo          ###   ########.fr       */
+/*   Updated: 2023/12/29 15:44:40 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdio.h>
-#include <signal.h>
-#include <stdbool.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <stdio.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define MAX_PATH 4096
 
@@ -45,7 +45,7 @@
 
 typedef struct s_redirect
 {
-    bool	error;
+	bool	error;
 	int		fd_in;
 	int		fd_out;
 	int		stdin_backup;
@@ -53,16 +53,12 @@ typedef struct s_redirect
 	int		cmd_index;
 	char	*in_file;
 	char	*out_file;
-	char	*heredoc_EOF;
-	bool	error;
-	int		cmd_index;
-
+	char	*heredoc_eof;
 }	t_redirect;
-
 
 typedef struct s_data
 {
-    char		**env;
+	char		**env;
 	char		*user_input;
 	char		*work_dir;
 	char		*old_work_dir;
@@ -103,5 +99,4 @@ typedef struct s_index_data
 
 extern int	g_status_code;
 
-
-#endif 
+#endif
