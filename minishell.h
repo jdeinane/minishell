@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2023/12/29 15:44:40 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/01 17:52:09 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,15 @@ typedef struct s_commands
 	pid_t			*pid;
 	int				num_cmds;
 	int				num_exec;
-	char			**cmds;
-	char			**paths;
 	int				*operators;
 	int				exit_value;
+	char			**cmds;
+	char			**paths;
 	t_pipe			*pipe;
 	t_redirect		*io;
 	t_cmd			*cmd;
 }	t_commands;
+
 
 typedef struct s_index_data
 {

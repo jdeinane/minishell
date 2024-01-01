@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_prompt.c                                      :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/22 16:51:02 by jubaldo           #+#    #+#             */
-/*   Updated: 2023/12/22 18:28:20 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/01 17:56:57 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/01 17:58:09 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-int		init_minishell(int ac, char **av, char **envp)
+void    init_env(t_data *data)
 {
-	t_data	data;
-	if (check_args(ac, av) == false || init_struct(&data, envp) == false)
-		exit_minishell(NULL, EXIT_FAILURE);
-	init_prompt(&data);
-	return (0);
+    if (data = NULL)
+        return ;
+    data->env = NULL;
+    data->user_input = NULL;
+    data->work_dir = NULL;
+    data->old_work_dir = NULL;
 }
-
-static void	init_prompt(t_data *data)
