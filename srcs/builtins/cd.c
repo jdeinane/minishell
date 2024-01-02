@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:09:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 21:50:13 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/02 23:43:32 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	builtin_cd(char **av, t_data *data)
 		return (1);
 	}
 	update_env_var(data, "OLDPWD", oldPath);
-	if (getcwd(newPathm, sizeof(newPath)) == NULL)
+	if (getcwd(newPath, sizeof(newPath)) == NULL)
 	{
 		perror("getcwd");
 		return (1);
