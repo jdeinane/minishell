@@ -6,19 +6,13 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/02 14:04:15 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/02 17:08:08 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-SRCS		=	builtins/*.c
-				execution/*
-				initialization/*
-				main/*
-				parsing/*
-				token/*
-				utils/*
+SRCS		=	
 
 CC			=	cc
 
