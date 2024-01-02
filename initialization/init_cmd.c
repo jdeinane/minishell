@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:49:59 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/01 17:53:30 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/02 11:55:20 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    init_cmds(t_commands *cmds)
 {
     if (cmds == NULL)
         return;
-    cmd->pid = NULL;
+    cmds->pid = NULL;
     cmds->num_cmds = 0;
     cmds->num_exec = 0;
     cmds->operators = NULL;

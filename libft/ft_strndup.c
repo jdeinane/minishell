@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipes.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:02:02 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 12:07:12 by jubaldo          ###   ########.fr       */
+/*   Created: 2023/09/17 23:28:04 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/02 15:46:45 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    init_pipes(t_pipe *pipe, int num_pipes)
+char	*ft_strndup(const char *s1, size_t n)
 {
-    int i;
+	char	*ptr;
 
-    i = 0;
-    if (pipe == NULL)
-        return ;
-    pipe->fd = malloc(sizeof(int) * 2 * num_pipes);
-    if (!pipe->fd)
-		return ;
-	while (i < 2 * num_pipes)
-	{
-		pipe->fd[i] = -1;
-		i++;
-	}
+	ptr = malloc((n + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy(ptr, s1, n);
+	ptr[n] = '\0';
+	return (ptr);
 }

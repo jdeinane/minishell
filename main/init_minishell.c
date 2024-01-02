@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipes.c                                       :+:      :+:    :+:   */
+/*   init_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:02:02 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 12:07:12 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/02 12:28:38 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/02 12:47:10 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    init_pipes(t_pipe *pipe, int num_pipes)
+void	init_minishell(int ac, char **av, char **envp)
 {
-    int i;
+	t_data		*data;
+	t_commands	*cmds;
+	char		*input;
 
-    i = 0;
-    if (pipe == NULL)
-        return ;
-    pipe->fd = malloc(sizeof(int) * 2 * num_pipes);
-    if (!pipe->fd)
-		return ;
-	while (i < 2 * num_pipes)
+	data = init_data();
+	cmds = init_commands();
+	init_env(data, envp);
+	while (1)
 	{
-		pipe->fd[i] = -1;
-		i++;
+		input = readline("minishell> ");
+		if (!input)
+			break ;
+		add_history(input);
+		parse_and_execute(input, data, cmds);
+		free(input);
 	}
+	free_data(data);
+	free_commands(cmds);
 }

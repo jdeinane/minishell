@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipes.c                                       :+:      :+:    :+:   */
+/*   parse_and_execute.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:02:02 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 12:07:12 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/02 12:47:32 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/02 15:30:25 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    init_pipes(t_pipe *pipe, int num_pipes)
+void	parse_and_execute(char *input, t_data *data, t_commands *cmds)
 {
-    int i;
+	char	**tokens;
+	int		i;
 
-    i = 0;
-    if (pipe == NULL)
-        return ;
-    pipe->fd = malloc(sizeof(int) * 2 * num_pipes);
-    if (!pipe->fd)
+	i = 0;
+	tokens = tokenize_input(input);
+	if (!tokens)
 		return ;
-	while (i < 2 * num_pipes)
+	if (!parse_tokens(tokens, cmds))
 	{
-		pipe->fd[i] = -1;
+		free_tokens(tokens);
+		return;
+	}
+	while (i < cmds->num_cmds)
+	{
+		execute_command(&cmds->cmd[i], data);
 		i++;
 	}
+	free_tokens(tokens);
 }

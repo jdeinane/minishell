@@ -6,14 +6,20 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2023/12/20 23:55:47 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/02 14:04:15 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-SRCS		=	
-	
+SRCS		=	builtins/*.c
+				execution/*
+				initialization/*
+				main/*
+				parsing/*
+				token/*
+				utils/*
+
 CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror -g

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipes.c                                       :+:      :+:    :+:   */
+/*   free_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 18:02:02 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 12:07:12 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/02 12:53:06 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/02 13:54:24 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    init_pipes(t_pipe *pipe, int num_pipes)
+void	free_tokens(char **tokens)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (pipe == NULL)
-        return ;
-    pipe->fd = malloc(sizeof(int) * 2 * num_pipes);
-    if (!pipe->fd)
+	i = 0;
+	if (tokens == NULL)
 		return ;
-	while (i < 2 * num_pipes)
+	while (tokens[i] != NULL)
 	{
-		pipe->fd[i] = -1;
+		free(tokens[i]);
 		i++;
 	}
+	free(tokens);
 }
