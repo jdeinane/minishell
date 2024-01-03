@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 23:59:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 00:10:03 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 15:37:04 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	builtin_export(char **av, char **env)
 	i = 0;
 	*var = av[1];
 	*value = ft_strchr(var, '=');
-
 	if (value)
 	{
 		*value = '\0';

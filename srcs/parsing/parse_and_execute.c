@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:47:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 15:30:25 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 15:37:23 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_and_execute(char *input, t_data *data, t_commands *cmds)
 	if (!parse_tokens(tokens, cmds))
 	{
 		free_tokens(tokens);
-		return;
+		return ;
 	}
 	while (i < cmds->num_cmds)
 	{

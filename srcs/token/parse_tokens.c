@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:52:42 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 15:56:30 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 15:39:51 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	add_token_to_cmd(t_cmd *cmd, char *token)
 
 bool	parse_tokens(char **tokens, t_commands *cmds)
 {
-	int 	i;
-	int		cmd_index;
+	int	i;
+	int	cmd_index;
 
 	i = 0;
 	cmd_index = 0;

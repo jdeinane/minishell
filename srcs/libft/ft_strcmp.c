@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:05:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 15:45:56 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 15:34:22 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);

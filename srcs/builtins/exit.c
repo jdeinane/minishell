@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 23:58:49 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 23:59:21 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 15:43:16 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_exit()
+int	builtin_exit(void)
 {
 	exit(0);
 	return (0);

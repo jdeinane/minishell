@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:09:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 23:43:32 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 15:52:30 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,25 @@
 
 int	builtin_cd(char **av, t_data *data)
 {
-	char	oldPath[4096];
-	char	newPath[4096];
+	char	old_path[4096];
+	char	new_path[4096];
 	char	*path;
 
-	if (getcwd(oldPath, sizeof(oldPath)) == NULL)
+	if (getcwd(old_path, sizeof(old_path)) == NULL)
+		return (perror("getcwd"), 1);
+	if (av[1] != NULL)
+		path = av[1];
+	else
 	{
-		perror("getcwd");
-		return (1);
-	}
-	path = av[1] ? av[1] : getenv("HOME");
-	if (path == NULL)
-	{
+		path = getenv("HOME");
 		printf("cd: HOME not set\n");
 		return (1);
 	}
-	if (chrdir(path) != 0)
-	{
-		perror("cd");
-		return (1);
-	}
-	update_env_var(data, "OLDPWD", oldPath);
-	if (getcwd(newPath, sizeof(newPath)) == NULL)
-	{
-		perror("getcwd");
-		return (1);
-	}
-	update_env_var(data, "PWD", newPath);
+	if (chdir(path) != 0)
+		return (perror("cd"), 1);
+	update_env_var(data, "OLDPWD", old_path);
+	if (getcwd(new_path, sizeof(new_path)) == NULL)
+		return (perror("getcwd"), 1);
+	update_env_var(data, "PWD", new_path);
 	return (0);
 }
