@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 23:58:49 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:11:14 by jubaldo          ###   ########.fr       */
+/*   Created: 2022/11/15 00:52:03 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/03 17:32:17 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_exit(void)
+char	*ft_strchr(const char *s, int c)
 {
-	exit(0);
-	return (0);
+	unsigned int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == s[i])
+		return ((char *)&s[i]);
+	return (NULL);
 }

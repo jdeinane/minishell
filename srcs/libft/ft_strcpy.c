@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 23:58:49 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:11:14 by jubaldo          ###   ########.fr       */
+/*   Created: 2022/09/22 12:29:58 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/03 17:51:33 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_exit(void)
+char	*ft_strcpy(char *dest, char *src)
 {
-	exit(0);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

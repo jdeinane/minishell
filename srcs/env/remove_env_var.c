@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   remove_env_var.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 23:58:49 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:11:14 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/03 17:08:01 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/03 17:10:37 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_exit(void)
+void    remove_env_var(char **env, const char **var)
 {
-	exit(0);
-	return (0);
+    int len;
+    int i;
+    int j;
+
+    len = ft_strlen(var);
+    while (env[i] != NULL)
+    {
+        if (ft_strcmp(env[i], var, len) == 0 && env[i][len] == '=')
+        {
+            j = i;
+            while (env[j] != NULL)
+            {
+                env[j] = env[j + 1];
+                j++;
+            }
+            break;
+        }
+        i++;
+    }
 }

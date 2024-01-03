@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:31:12 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 23:56:37 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:18:06 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ int	builtin_echo(char **av)
 		nl = 0;
 		i++;
 	}
-	while (av[1] != NULL)
+	while (av[i] != NULL)
 	{
 		printf("%s", av[i]);
 		if (av[i + 1] != NULL)
 			printf(" ");
+		i++;
 	}
 	if (nl)
 		printf("\n");

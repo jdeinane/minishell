@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 23:59:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 15:37:04 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:54:29 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,26 @@ int	builtin_export(char **av, char **env)
 	char	*value;
 
 	i = 0;
-	*var = av[1];
-	*value = ft_strchr(var, '=');
-	if (value)
+	if (av[1] == NULL)
 	{
-		*value = '\0';
-		value++;
-		set_env_var(env, var, value);
+		while (env[i] != NULL)
+		{
+			printf("declare -x %s\n", env[i]);
+			i++;
+		}
 	}
 	else
-		set_env_var(env, var, ""); //ou bien printf export:variable sans valeur
+	{
+		var = av[1];
+		value = ft_strchr(var, '=');
+		if (value)
+		{
+			*value = '\0';
+			value++;
+			set_env_var(env, var, value);
+		}
+		else
+			set_env_var(env, var, "");
+	}
 	return (0);
 }
