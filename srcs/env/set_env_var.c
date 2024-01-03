@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:10:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 20:01:38 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 20:52:07 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*create_env_var(const char *var, const char *value)
 	if (!new_var)
 		return (NULL);
 	ft_strcpy(new_var, var);
-	ft_strcpy(new_var, "=");
+	ft_strcat(new_var, "=");
 	ft_strcat(new_var, value);
 	return (new_var);
 }

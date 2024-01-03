@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 21:50:34 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 20:41:51 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 20:51:11 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,20 @@ void	add_new_env_var(char **env, char *new_var, int count)
 
 	i = 0;
 	new_env = malloc(sizeof(char *) * (count + 2));
+	if (!new_env)
+	{
+		free(new_var);
+		return ;
+	}
 	while (i < count)
 	{
-		new_env[i] = (*env)[i];
+		new_env[i] = env[i];
 		i++;
 	}
 	new_env[count] = new_var;
 	new_env[count + 1] = NULL;
-	free(*env);
-	*env = new_env;
+	free(env);
+	env = new_env;
 }
 
 void	update_env_var(t_data *data, const char *key, const char *value)
