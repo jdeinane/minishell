@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:22:51 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:48:02 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:55:41 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_strlen(char const *s)
+size_t	ft_strlen(char const *s)
 {
 	int	i;
 

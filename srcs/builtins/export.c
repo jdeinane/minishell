@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 23:59:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:54:29 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:27:27 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ int	builtin_export(char **av, char **env)
 	i = 0;
 	if (av[1] == NULL)
 	{
-		while (env[i] != NULL)
-		{
+		while (env[++i] != NULL)
 			printf("declare -x %s\n", env[i]);
-			i++;
-		}
 	}
 	else
 	{

@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:56:11 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:12:51 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:26:16 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int    builtin_unset(char **av, char **env)
+int builtin_unset(char **av, char **env)
 {
     if (av[1] == NULL)
     {

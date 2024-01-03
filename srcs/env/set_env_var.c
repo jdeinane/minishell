@@ -6,62 +6,81 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:10:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 00:23:29 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 20:01:38 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	set_env_var(char **env, char *var, char *value)
+int	find_env_index(char **env, const char *var)
 {
-	size_t	len;
-	int		index;
-	int		i;
-	int		count;
-	char	*new_var;
-	char	**new_env;
+	int	i;
 
-	len = ft_strlen(var) + ft_strlen(value) + 2;
-	index = -1;
 	i = 0;
-	count = 0;
-	while (env[i] != NULL)
+	while (env[i])
 	{
-		if (ft_strncmp(env[i], var, ft_strlen(var)) == 0 && env[i][ft_strlen(var)] == '=')
+		if (ft_strcmp(env[i], var, ft_strlen(var)) == 0
+			&& env[i][ft_strlen(var)] == '=')
 		{
-			index = i;
-			break;
+			return (i);
+			i++;
 		}
 	}
+	return (-1);
+}
+
+char	*create_env_var(const char *var, const char *value)
+{
+	size_t	len;
+	char	*new_var;
+
+	len = ft_strlen(var) + ft_strlen(value) + 2;
 	new_var = malloc(len);
 	if (!new_var)
-		return;
+		return (NULL);
 	ft_strcpy(new_var, var);
-	ft_strcat(new_var, "=");
+	ft_strcpy(new_var, "=");
 	ft_strcat(new_var, value);
-	if (index == -1)
+	return (new_var);
+}
+
+void	update_env(char ***env, char *new_var, int index)
+{
+	int		count;
+	int		i;
+	char	**new_env;
+
+	i = 0;
+	if (index != -1)
 	{
-		free(env[index]);
-		env[index] = new_var;
+		free((*env)[index]);
+		(*env)[index] = new_var;
 	}
 	else
 	{
-		while (env[count] != NULL)
+		count = 0;
+		while ((*env)[count])
 			count++;
+		new_env = malloc(sizeof(char *) * (count + 2));
+		if (!new_env)
+			return ;
+		while (i++ < count)
+			new_env[i] = (*env)[i];
+		new_env[count] = new_var;
+		new_env[count + 1] = NULL;
+		free(*env);
+		*env = new_env;
 	}
-	new_env = malloc(sizeof(char *) * (count + 2));
-	if (!new_env)
-	{
-		free(new_var);
-		return;
-	}
-	while (i < count)
-	{
-		new_env[i] = env[i];
-		i++;
-	}
-	new_env[count] = new_var;
-	new_env[count + 1] = NULL;
-	free(env);
-	env = new_env;
+}
+
+void	set_env_var(char ***env, char *var, char *value)
+{
+	int		index;
+	char	*new_var;
+
+	index = find_env_index(*env, var);
+	new_var = create_env_var(var, value);
+	if (!new_var)
+		return ;
+	update_env(env, new_var, index);
 }

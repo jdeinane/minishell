@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:53:37 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 16:12:28 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 19:28:10 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	exec_command(t_cmd *cmd, t_data *data)
 {
 	int	status;
+
 	if (is_builtin(cmd))
 		status = exec_builtin(cmd, data);
 	else

@@ -6,46 +6,51 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 21:50:34 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 23:42:56 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/03 20:41:51 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	update_env_var(t_data *data, const char *key, const char *value)
+void	update_existing_env_var(char ***env, char *new_var, int index)
 {
-	int		key_len;
-	int		value_len;
-	int		count;
-	int 	i;
-	char	**new_env;
-	char	*env_var;
+	free((*env)[index]);
+	(*env)[index] = new_var;
+}
 
-	key_len = ft_strlen(key);
-	value_len = ft_strlen(value);
-	count = 0;
+void	add_new_env_var(char **env, char *new_var, int count)
+{
+	char	**new_env;
+	int		i;
+
 	i = 0;
-	env_var = malloc(key_len + value_len + 2);
-	if (!env_var)
-		return;
-	ft_strcpy(env_var, key);
-	env_var[key_len] = '=';
-	ft_strcpy(env_var + key_len + 1, value);
-	while (data->env && data->env[count])
-		count++;
 	new_env = malloc(sizeof(char *) * (count + 2));
-	if (!new_env)
-	{
-		free(env_var);
-		return;
-	}
 	while (i < count)
 	{
-		new_env[i] = data->env[i];
+		new_env[i] = (*env)[i];
 		i++;
 	}
-	new_env[count] = env_var;
+	new_env[count] = new_var;
 	new_env[count + 1] = NULL;
-	free(data->env);
-	data->env = new_env;
+	free(*env);
+	*env = new_env;
+}
+
+void	update_env_var(t_data *data, const char *key, const char *value)
+{
+	char	*new_var;
+	int		index;
+	int		count;
+
+	new_var = create_env_var(key, value);
+	index = find_env_index(data->env, key);
+	count = 0;
+	if (!new_var)
+		return ;
+	while (data->env[count])
+		count++;
+	if (index != -1)
+		update_existing_env_var(&(data->env), new_var, index);
+	else
+		add_new_env_var(&(data->env), new_var, count);
 }
