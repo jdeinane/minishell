@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:31:12 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:18:06 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:09:51 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	builtin_echo(char **av)
 {

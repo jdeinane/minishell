@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:29:58 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 17:51:33 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:11:15 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 char	*ft_strcpy(char *dest, char *src)
 {

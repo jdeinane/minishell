@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:49:59 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 11:55:20 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:44 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void    init_cmd(t_cmd *cmd)
 {

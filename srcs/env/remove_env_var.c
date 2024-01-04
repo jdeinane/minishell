@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:08:01 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 20:52:34 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:20 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void    remove_env_var(char **env, const char **var)
 {

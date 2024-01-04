@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:52:42 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 12:19:21 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:12:02 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void	add_token_to_cmd(t_cmd *cmd, char *token)
 {

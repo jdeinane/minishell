@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:10:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 20:52:07 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:23 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	find_env_index(char **env, const char *var)
 {

@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:59:37 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 12:06:39 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:55 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void    init_tokens(t_tokenizer *tokens, char *input)
 {

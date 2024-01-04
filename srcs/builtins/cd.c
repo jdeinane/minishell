@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:09:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 11:10:00 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:09:43 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	builtin_cd(char **av, t_data *data)
 {

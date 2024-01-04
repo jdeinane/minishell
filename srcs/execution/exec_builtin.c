@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:04:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 13:30:49 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:34 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	is_builtin(t_cmd *cmd)
 {

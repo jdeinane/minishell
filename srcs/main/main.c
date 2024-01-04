@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 18:23:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2023/12/22 18:27:37 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:11:41 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	main(int ac, char **av, char **envp)
 {

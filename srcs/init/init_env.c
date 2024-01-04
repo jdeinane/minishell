@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:32:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/02 12:34:40 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:47 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void	init_env(t_data *data, char **envp)
 {

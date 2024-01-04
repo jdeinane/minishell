@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:58:41 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 15:44:16 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:53 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void    init_redirect(t_redirect *redirect)
 {

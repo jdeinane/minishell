@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 21:50:34 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 20:51:11 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:10:25 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void	update_existing_env_var(char ***env, char *new_var, int index)
 {

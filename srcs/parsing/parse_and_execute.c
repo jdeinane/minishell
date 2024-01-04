@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:47:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 15:37:23 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 14:11:53 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void	parse_and_execute(char *input, t_data *data, t_commands *cmds)
 {
