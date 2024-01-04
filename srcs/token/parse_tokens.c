@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:52:42 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 15:39:51 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 12:19:21 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 void	add_token_to_cmd(t_cmd *cmd, char *token)
 {
-	static int	arg_count;
-	char		**new_args;
-	int			i;
+	char	**new_args;
+	int		arg_count;
+	int		i;
 
 	i = 0;
 	arg_count = 0;
-	while (cmd->args && cmd->args[arg_count])
-	{
-		new_args = malloc(sizeof(char *) * (arg_count + 2));
-		arg_count++;
-	}
+	new_args = malloc(sizeof(char *) * (arg_count + 2));
 	if (!new_args)
 		return ;
+	while (cmd->args && cmd->args[arg_count])
+		arg_count++;
 	while (i < arg_count)
 	{
 		new_args[i] = cmd->args[i];
@@ -38,25 +36,23 @@ void	add_token_to_cmd(t_cmd *cmd, char *token)
 	cmd->args = new_args;
 }
 
-bool	parse_tokens(char **tokens, t_commands *cmds)
+bool	parse_tokens(t_tokenizer *tokenizer, t_commands *cmds)
 {
-	int	i;
-	int	cmd_index;
+	int		i;
+	int		cmd_index;
 
 	i = 0;
 	cmd_index = 0;
-	init_cmd(&cmds->cmd[cmd_index]);
-	while (tokens[i] != NULL)
+	while (i < tokenizer->count)
 	{
-		if (is_cmd_separator(tokens[i]))
+		if (is_cmd_separator(tokenizer->count))
 		{
-			// gerer un separateur de cmd (comme un pipe)
 			cmd_index++;
-			init_cmd(&cmds->cmd[cmd_index]);
+			init_cmd(&cmds->cmds[cmd_index]);
 		}
 		else
-			add_token_to_cmd(&cmds->cmd[cmd_index], tokens[i]);
-	i++;
+			add_token_to_cmd(&cmds->cmds[cmd_index], tokenizer->tokens[i]);
+		i++;
 	}
 	return (true);
 }

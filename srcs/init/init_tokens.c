@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tokens.c                                      :+:      :+:    :+:   */
+/*   init_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 12:53:06 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 12:10:02 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/04 11:59:37 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/04 12:06:39 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_tokens(t_tokenizer *tokenizer)
+void    init_tokens(t_tokenizer *tokens, char *input)
 {
-	int	i;
-
-	i = 0;
-	if (tokenizer->tokens == NULL)
-		return ;
-	while (tokenizer->tokens[i] != NULL)
-	{
-		free(tokenizer->tokens[i]);
-		i++;
-	}
-	free(tokenizer->tokens);
-	tokenizer->tokens = NULL;
-	tokenizer->count = 0;
-	tokenizer->size = 0;
+    tokens->count = 0;
+    tokens->size = 10;
+    tokens->tokens = malloc(sizeof(char *) * tokens->size);
+    if (!tokens->tokens)
+        return ;
+    tokens->start = input;
+    tokens->current_quote = '\0';
+    tokens->in_quote = false;
 }

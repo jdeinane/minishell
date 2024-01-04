@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:09:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 19:24:59 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 11:10:00 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	builtin_cd(char **av, t_data *data)
 	char	old_path[4096];
 	char	new_path[4096];
 
-	if (getcwd(old_path), sizeof(old_path) == NULL)
+	if (getcwd((old_path), sizeof(old_path)) == NULL)
 		return (perror("cd"), 1);
 	if (av[1] != NULL)
 		path = av[1];

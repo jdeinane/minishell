@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/03 15:33:08 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/04 12:02:16 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,16 @@ typedef struct s_index_data
 	size_t	malloc_size;
 	size_t	j;
 }	t_index_data;
+
+typedef struct s_tokenizer
+{
+	char	**tokens;
+	char	*start;
+	char 	current_quote;
+	bool	in_quote;
+	int		count;
+	int		size;
+}	t_tokenizer;
 
 extern int	g_status_code;
 
