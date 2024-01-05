@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:31:44 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 23:40:21 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:56:12 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int handle_redirections(t_commands *cmds)
+int	handle_redirections(t_commands *cmds)
 {
 	t_redirect	*redirect;
 	int			i;

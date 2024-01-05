@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 12:02:16 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:56:50 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_redirect
 	int		cmd_index;
 	char	*in_file;
 	char	*out_file;
+	char	*append_file;
 	char	*heredoc_eof;
 }	t_redirect;
 
@@ -101,7 +102,7 @@ typedef struct s_tokenizer
 {
 	char	**tokens;
 	char	*start;
-	char 	current_quote;
+	char	current_quote;
 	bool	in_quote;
 	int		count;
 	int		size;

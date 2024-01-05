@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 21:19:20 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:11:05 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/05 11:41:31 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,3 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-
-/*#include <stdio.h>
-int	main(void)
-{
-	char	dest[20] = " ";
-	char	src[20] = "hello";
-	printf("%s", (char *)ft_memcpy(dest, src, 3));
-}*/
