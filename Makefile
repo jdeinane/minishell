@@ -6,13 +6,16 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/02 17:08:08 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/05 18:34:31 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-SRCS		=	
+SRCS_DIR	=	./src/
+
+SRCS_FILES	=	cd.c echo.c env.c exit.c export.c pwd.c unset.c \
+				
 
 CC			=	cc
 
