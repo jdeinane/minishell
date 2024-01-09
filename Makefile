@@ -6,22 +6,34 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/05 18:34:31 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/09 12:01:06 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-SRCS_DIR	=	./src/
+SRCS_DIR	=	./srcs/
 
 SRCS_FILES	=	cd.c echo.c env.c exit.c export.c pwd.c unset.c \
-				
+				remove_env_var.c set_env_var.c update_env_var.c \
+				exec_builtin.c exec_command.c \
+				init_cmd.c init_env.c init_pipes.c init_redirections.c init_tokens.c \
+				free_tokens.c parse_tokens.c token_input.c \
+				init_minishell.c main.c \
+				parse_and_execution.c \
+				close_pipes.c create_pipes.c exec_pipes_redrect.c setup_pipe_redir.c \
+				append.c heredoc.c input.c output.c redirection_handler.c
+				is_cmd_separator.c libft.c libft2.c
+
+SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))	
+
+OBJ_DIR		=	./obj/
+
+OBJS		= $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror -g
-
-OBJS		=	$(SRCS:.c=.o)
 
 all:		$(NAME)
 
