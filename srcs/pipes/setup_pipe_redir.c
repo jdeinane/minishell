@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:57:20 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/05 17:58:55 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 16:46:16 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	setup_pipe_redirection(t_commands *cmds)
+void	setup_pipe_redir(t_commands *cmds)
 {
 	int	i;
 

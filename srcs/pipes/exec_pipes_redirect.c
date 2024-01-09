@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:35:38 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/09 14:07:22 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 16:49:22 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	execute_cmd(t_commands *cmds, int index)
 {
 	t_data	*data;
 
-	setup_pipe_redir(cmds, index);
-	if (is_builtin(cmds->cmds[index]))
+	setup_pipe_redir(cmds);
+	if (is_builtin(&cmds->cmd[index]))
 		exec_builtin(&cmds->cmd[index], data);
 	else
 		exec_external_command(&cmds->cmd[index], data);

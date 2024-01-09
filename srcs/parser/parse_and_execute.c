@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:47:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/09 14:21:29 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 17:02:41 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	parse_and_execute(char *input, t_data *data, t_commands *cmds)
 	tokenize_input(&tokenizer, input);
 	if (!tokens)
 		return ;
-	if (!parse_tokens(tokens, cmds))
+	if (!parse_tokens(&tokenizer, cmds))
 	{
-		free_tokens(tokens);
+		free_tokens(&tokenizer);
 		return ;
 	}
 	while (i < cmds->num_cmds)
@@ -32,5 +32,5 @@ void	parse_and_execute(char *input, t_data *data, t_commands *cmds)
 		exec_command(&cmds->cmd[i], data);
 		i++;
 	}
-	free_tokens(tokens);
+	free_tokens(&tokenizer);
 }

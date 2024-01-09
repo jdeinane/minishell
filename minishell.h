@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/09 14:14:55 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 16:46:38 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	parse_and_execute(char *input, t_data *data, t_commands *cmds);
 // PIPES
 void	close_pipes(t_commands *cmds);
 void	execute_cmd(t_commands *cmds, int index);
-void	setup_pipe_redirection(t_commands *cmds);
+void	setup_pipe_redir(t_commands *cmds);
 int		create_pipes(t_commands *cmds);
 int		init_pipes_and_forks(t_commands *cmds);
 int		exec_cmd_pipes_and_redirect(t_commands *cmds);
