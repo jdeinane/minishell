@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:10:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:10:23 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:13:21 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	find_env_index(char **env, const char *var)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strcmp(env[i], var, ft_strlen(var)) == 0
+		if (ft_strncmp(env[i], var, ft_strlen(var)) == 0
 			&& env[i][ft_strlen(var)] == '=')
 		{
 			return (i);

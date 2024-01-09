@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:53:37 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:10:38 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:22:27 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int	exec_external_command(t_cmd *cmd, t_data *data)
 	else
 	{
 		waitpid(pid, &status, 0);
-		if (WIFEXIT(status))
+		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 		else
 			return (-1);
 	}
+	return (0);
 }

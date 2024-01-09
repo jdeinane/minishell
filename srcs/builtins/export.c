@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 23:59:23 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:10:03 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 12:42:36 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	builtin_export(char **av, char **env)
 		{
 			*value = '\0';
 			value++;
-			set_env_var(env, var, value);
+			set_env_var(&env, var, value);
 		}
 		else
-			set_env_var(env, var, "");
+			set_env_var(&env, var, "");
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:08:01 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/05 16:58:26 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:03:09 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	remove_env_var(char **env, const char **var)
 	int	j;
 
 	i = 0;
-	len = ft_strlen(var);
+	len = ft_strlen(*var);
 	while (env[i] != NULL)
 	{
-		if (ft_strcmp(env[i], var, len) == 0 && env[i][len] == '=')
+		if (ft_strncmp(env[i], *var, len) == 0 && env[i][len] == '=')
 		{
 			j = i;
 			while (env[j] != NULL)

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 21:50:34 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:10:25 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:19:03 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	update_env_var(t_data *data, const char *key, const char *value)
 	if (index != -1)
 		update_existing_env_var(&(data->env), new_var, index);
 	else
-		add_new_env_var(&(data->env), new_var, count);
+		add_new_env_var(data->env, new_var, count);
 }

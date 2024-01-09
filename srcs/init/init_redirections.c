@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:58:41 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/05 16:51:26 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:11:29 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_redirect(t_redirect *redirect)
 {
 	if (!redirect)
-		return (NULL);
+		return ;
 	redirect->error = false;
 	redirect->fd_in = STDIN;
 	redirect->fd_out = STDOUT;

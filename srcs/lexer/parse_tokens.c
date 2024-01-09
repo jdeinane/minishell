@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:52:42 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:12:02 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:16:36 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ bool	parse_tokens(t_tokenizer *tokenizer, t_commands *cmds)
 	cmd_index = 0;
 	while (i < tokenizer->count)
 	{
-		if (is_cmd_separator(tokenizer->count))
+		if (is_cmd_separator(tokenizer->tokens[i]))
 		{
 			cmd_index++;
-			init_cmd(&cmds->cmds[cmd_index]);
+			init_cmd(&cmds->cmd[cmd_index]);
 		}
 		else
-			add_token_to_cmd(&cmds->cmds[cmd_index], tokenizer->tokens[i]);
+			add_token_to_cmd(&cmds->cmd[cmd_index], tokenizer->tokens[i]);
 		i++;
 	}
 	return (true);

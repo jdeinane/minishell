@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:31:44 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/05 16:56:12 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 13:37:25 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	handle_redirections(t_commands *cmds)
 			if (append_output(redirect->append_file) < 0)
 				return (-1);
 		if (redirect->heredoc_eof)
-			if (heredoc(redirect->heredoc_eof) < 0)
+			if (here_document(redirect->heredoc_eof) < 0)
 				return (-1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:04:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:10:34 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:11:01 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	exec_builtin(t_cmd *cmd, t_data *data)
 		else if (ft_strcmp(cmd->path, "pwd") == 0)
 			return (builtin_pwd());
 		else if (ft_strcmp(cmd->path, "export") == 0)
-			return (builtin_export(cmd->args, data));
+			return (builtin_export(cmd->args, data->env));
 		else if (ft_strcmp(cmd->path, "unset") == 0)
-			return (builtin_unset(cmd->args, data));
+			return (builtin_unset(cmd->args, data->env));
 		else if (ft_strcmp(cmd->path, "env") == 0)
-			return (builtin_env(data));
+			return (builtin_env(data->env));
 		else if (ft_strcmp(cmd->path, "exit") == 0)
-			return (builtin_exit(cmd->args, data));
+			return (builtin_exit());
 	}
 	return (-1);
 }

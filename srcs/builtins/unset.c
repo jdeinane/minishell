@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:56:11 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/05 16:47:55 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:08:18 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	builtin_unset(char **av, char **env)
 		printf("unset: not enough arguments\n");
 		return (1);
 	}
-	remove_env_var(env, av[1]);
+	remove_env_var(env, (const char **)&av[1]);
 	return (0);
 }

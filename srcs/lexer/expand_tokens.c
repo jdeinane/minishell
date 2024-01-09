@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minishell.c                                   :+:      :+:    :+:   */
+/*   expand_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 12:28:38 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/09 13:48:17 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/09 13:00:23 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/09 14:12:20 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	init_minishell(int ac, char **av, char **envp)
+char	**expand_tokens_array(char **old_tokens, int new_size)
 {
-	t_data		*data;
-	t_commands	*cmds;
-	char		*input;
+	char	**new_tokens;
+	int		i;
 
-	data = init_data();
-	cmds = init_commands();
-	init_env(data, envp);
-	while (1)
+	i = 0;
+	new_tokens = malloc(new_size * sizeof(char *));
+	if (new_tokens == NULL)
+		return (perror("malloc"), NULL);
+	while (i < new_size)
 	{
-		input = readline("minishell> ");
-		if (!input)
-			break ;
-		add_history(input);
-		parse_and_execute(input, data, cmds);
-		free(input);
+		new_tokens[i] = NULL;
+		i++;
 	}
-	free_data(data);
-	free_commands(cmds);
+	while (old_tokens[i] != NULL && i < new_size)
+	{
+		new_tokens[i] = old_tokens[i];
+		i++;
+	}
+	free(old_tokens);
+	return (new_tokens);
 }

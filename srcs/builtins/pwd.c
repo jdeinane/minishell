@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:52:25 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/05 16:57:08 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/09 12:52:32 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ int	builtin_pwd(void)
 		return (1);
 	}
 	printf("%s\n", cwd);
+	return (0);
 }
