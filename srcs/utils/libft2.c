@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   libft2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 14:06:06 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/04 14:11:17 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/09 11:52:25 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/09 11:52:57 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 char	*ft_strdup(char *src)
 {
@@ -33,4 +47,26 @@ char	*ft_strdup(char *src)
 		dup[i] = '\0';
 	}
 	return (dup);
+}
+
+size_t	ft_strlen(char const *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strndup(const char *s1, size_t n)
+{
+	char	*ptr;
+
+	ptr = malloc((n + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy(ptr, s1, n);
+	ptr[n] = '\0';
+	return (ptr);
 }
