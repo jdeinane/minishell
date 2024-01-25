@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 23:30:02 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:40:39 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int			set_env_var(char **envp, const char *name, const char *value);
 int			unset_env_var(char **envp, const char *var_name);
 
 // INIT
-bool		*init_data(t_data *data, char **envp);
+bool		init_data(t_data *data, char **envp);
 void		init_commands(t_data *data, t_commands *cmds);
 void		init_redirections(t_commands *cmds);
 void		init_pipe(t_commands *cmds);
@@ -206,6 +206,7 @@ void		*ft_calloc(size_t nmemb, size_t size);
 int			ft_isdigit(int c);
 long		ft_strtol(const char *str, char **endptr, int base);
 char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strsjoin(char *str, char *add);
 
 // SIGNALS
 void		signals_wait_cmd(void);

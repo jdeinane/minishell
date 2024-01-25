@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/25 23:30:16 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/25 23:42:04 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,16 +53,36 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/redirection/output.c				\
 				srcs/redirection/redirection_handler.c	\
 				srcs/signals/signal_handler.c			\
+				srcs/libft/ft_calloc.c					\
+				srcs/libft/ft_isalnum.c					\
+				srcs/libft/ft_isdigit.c					\
+				srcs/libft/ft_memcpy.c					\
+				srcs/libft/ft_putchar.c					\
+				srcs/libft/ft_putendl_fd.c				\
+				srcs/libft/ft_strcat.c					\
+				srcs/libft/ft_strchr.c					\
+				srcs/libft/ft_strcmp.c					\
+				srcs/libft/ft_strcpy.c					\
+				srcs/libft/ft_strdup.c					\
+				srcs/libft/ft_strlen.c					\
+				srcs/libft/ft_strncmp.c					\
+				srcs/libft/ft_strndup.c					\
+				srcs/libft/ft_strtok.c					\
+				srcs/libft/ft_strtrim.c					\
+				srcs/libft/ft_isalpha.c					\
+				srcs/libft/ft_split.c					\
+				srcs/libft/ft_strncpy.c					\
+				srcs/libft/ft_putstr_fd.c				\
+				srcs/libft/ft_strtol.c					\
+				srcs/libft/ft_strjoin.c					\
+				srcs/libft/ft_memset.c					\
+				srcs/libft/ft_strsjoin.c				\
 				srcs/utils/check_args.c					\
 				srcs/utils/exit_minishell.c				\
 				srcs/utils/get_prompt.c					\
 				srcs/utils/free_all.c					\
 				srcs/utils/input_handler.c				\
 				srcs/utils/is_trucnuche.c				\
-				srcs/utils/libft.c						\
-				srcs/utils/libft2.c						\
-				srcs/utils/libft3.c						\
-				srcs/utils/libft4.c						\
 				srcs/utils/path.c						\
 				srcs/utils/error_msg.c					\
 
