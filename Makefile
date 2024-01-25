@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/25 23:42:04 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/26 00:15:23 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/libft/ft_strjoin.c					\
 				srcs/libft/ft_memset.c					\
 				srcs/libft/ft_strsjoin.c				\
+				srcs/libft/ft_atol.c					\
 				srcs/utils/check_args.c					\
 				srcs/utils/exit_minishell.c				\
 				srcs/utils/get_prompt.c					\

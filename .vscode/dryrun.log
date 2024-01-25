@@ -2,12 +2,12 @@ make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/jendiane/Documents/42/newnew_minishell'
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/cd.o srcs/builtins/cd.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/echo.o srcs/builtins/echo.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/env.o srcs/builtins/env.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/exit.o srcs/builtins/exit.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/export.o srcs/builtins/export.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/pwd.o srcs/builtins/pwd.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/builtins/unset.o srcs/builtins/unset.c
+cc -Wall -Wextra -Werror -g   -c -o srcs/init/init_data.o srcs/init/init_data.c
  
 make: *** No rule to make target `srcs/env/copy_env.o', needed by `minishell'.
 make: *** No rule to make target `srcs/env/remove_env_var.o', needed by `minishell'.
@@ -16,65 +16,27 @@ make: *** No rule to make target `srcs/env/update_env_var.o', needed by `minishe
 make: *** No rule to make target `srcs/exec/exec_builtin.o', needed by `minishell'.
 make: *** No rule to make target `srcs/exec/exec_command.o', needed by `minishell'.
 make: *** No rule to make target `srcs/exec/execute.o', needed by `minishell'.
-
-cc -Wall -Wextra -Werror -g   -c -o srcs/init/init_data.o srcs/init/init_data.c
- 
 make: *** No rule to make target `srcs/exec/find_exec_path.o', needed by `minishell'.
 make: *** No rule to make target `srcs/init/init_env.o', needed by `minishell'.
 make: *** No rule to make target `srcs/lexer/add_token.o', needed by `minishell'.
-
 make: *** No rule to make target `srcs/lexer/handle_env_variables.o', needed by `minishell'.
-
 make: *** No rule to make target `srcs/lexer/handle_pipes_redir.o', needed by `minishell'.
 make: *** No rule to make target `srcs/lexer/handle_quotes.o', needed by `minishell'.
-
 make: *** No rule to make target `srcs/lexer/handle_reg_char.o', needed by `minishell'.
 
-make: *** No rule to make target `srcs/lexer/handle_whitespace.o', needed by `minishell'.
-
-make: *** No rule to make target `srcs/lexer/token_input.o', needed by `minishell'.
-
-make: *** No rule to make target `srcs/main/init_minishell.o', needed by `minishell'.
-
 cc -Wall -Wextra -Werror -g   -c -o srcs/main/main.o srcs/main/main.c
- 
-make: *** No rule to make target `srcs/parser/check_token_order.o', needed by `minishell'.
-
-make: *** No rule to make target `srcs/parser/expand_env.o', needed by `minishell'.
-
-make: *** No rule to make target `srcs/parser/parse_command.o', needed by `minishell'.
-
-make: *** No rule to make target `srcs/parser/parse_pipes_redirections.o', needed by `minishell'.
-
-make: *** No rule to make target `srcs/parser/parse_reg_cmds.o', needed by `minishell'.
-
 cc -Wall -Wextra -Werror -g   -c -o srcs/pipes/close_pipes.o srcs/pipes/close_pipes.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/pipes/create_pipes.o srcs/pipes/create_pipes.c
- 
-make: *** No rule to make target `srcs/pipes/exec_pipes_redirect.o', needed by `minishell'.
-make: *** No rule to make target `srcs/pipes/setup_pipe_redir.o', needed by `minishell'.
-make: *** No rule to make target `srcs/redirection/append.o', needed by `minishell'.
-
 cc -Wall -Wextra -Werror -g   -c -o srcs/redirection/heredoc.o srcs/redirection/heredoc.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/redirection/input.o srcs/redirection/input.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/redirection/output.o srcs/redirection/output.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/signals/signal_handler.o srcs/signals/signal_handler.c
- 
-make: *** No rule to make target `srcs/redirection/redirection_handler.o', needed by `minishell'.
-
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_calloc.o srcs/libft/ft_calloc.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_isalnum.o srcs/libft/ft_isalnum.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_isdigit.o srcs/libft/ft_isdigit.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_memcpy.o srcs/libft/ft_memcpy.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_putchar.o srcs/libft/ft_putchar.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_putendl_fd.o srcs/libft/ft_putendl_fd.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strcat.o srcs/libft/ft_strcat.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strchr.o srcs/libft/ft_strchr.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strcmp.o srcs/libft/ft_strcmp.c
@@ -82,32 +44,38 @@ cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strcpy.o srcs/libft/ft_strcpy.
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strdup.o srcs/libft/ft_strdup.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strlen.o srcs/libft/ft_strlen.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strncmp.o srcs/libft/ft_strncmp.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strndup.o srcs/libft/ft_strndup.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strtok.o srcs/libft/ft_strtok.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strtrim.o srcs/libft/ft_strtrim.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_isalpha.o srcs/libft/ft_isalpha.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_split.o srcs/libft/ft_split.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strncpy.o srcs/libft/ft_strncpy.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_putstr_fd.o srcs/libft/ft_putstr_fd.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strtol.o srcs/libft/ft_strtol.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strjoin.o srcs/libft/ft_strjoin.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_memset.o srcs/libft/ft_memset.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_strsjoin.o srcs/libft/ft_strsjoin.c
+cc -Wall -Wextra -Werror -g   -c -o srcs/libft/ft_atol.o srcs/libft/ft_atol.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/utils/check_args.o srcs/utils/check_args.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/utils/exit_minishell.o srcs/utils/exit_minishell.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/utils/get_prompt.o srcs/utils/get_prompt.c
- 
 cc -Wall -Wextra -Werror -g   -c -o srcs/utils/input_handler.o srcs/utils/input_handler.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/utils/is_trucnuche.o srcs/utils/is_trucnuche.c
 cc -Wall -Wextra -Werror -g   -c -o srcs/utils/error_msg.o srcs/utils/error_msg.c
 make: Leaving directory `/Users/jendiane/Documents/42/newnew_minishell'
  
+make: *** No rule to make target `srcs/lexer/handle_whitespace.o', needed by `minishell'.
+make: *** No rule to make target `srcs/lexer/token_input.o', needed by `minishell'.
+make: *** No rule to make target `srcs/main/init_minishell.o', needed by `minishell'.
+make: *** No rule to make target `srcs/parser/check_token_order.o', needed by `minishell'.
+make: *** No rule to make target `srcs/parser/expand_env.o', needed by `minishell'.
+make: *** No rule to make target `srcs/parser/parse_command.o', needed by `minishell'.
+make: *** No rule to make target `srcs/parser/parse_pipes_redirections.o', needed by `minishell'.
+make: *** No rule to make target `srcs/parser/parse_reg_cmds.o', needed by `minishell'.
+make: *** No rule to make target `srcs/pipes/exec_pipes_redirect.o', needed by `minishell'.
+make: *** No rule to make target `srcs/pipes/setup_pipe_redir.o', needed by `minishell'.
+make: *** No rule to make target `srcs/redirection/append.o', needed by `minishell'.
+make: *** No rule to make target `srcs/redirection/redirection_handler.o', needed by `minishell'.
 make: *** No rule to make target `srcs/utils/free_all.o', needed by `minishell'.
 make: *** No rule to make target `srcs/utils/path.o', needed by `minishell'.
 

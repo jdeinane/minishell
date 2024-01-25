@@ -5,77 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 15:24:33 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 13:35:42 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/22 15:24:33 by jubaldj           #+#    #+#             */
+/*   Updated: 2024/01/26 00:20:53 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static bool	is_valid_env_var_name(const char *str)
-{
-	if (!str || !(*str == '_' || ft_isalpha(*str)))
-		return (false);
-	str++;
-	while (*str)
-	{
-		if (!(*str == '_' || ft_isalnum(*str)))
-			return (false);
-		str++;
-	}
-	return (true);
-}
-
-static int	display_all_env_vars(char **envp)
-{
-	int	i;
-
-	i = 0;
-	if (!envp)
-		return (1);
-	while (envp[i] != NULL)
-	{
-		write(STDOUT, "declare -x ", 11);
-		write(STDOUT, envp[i], ft_strlen(envp[i]));
-		write(STDOUT, "\n", 1);
-	}
-	return (0);
-}
-
-int	builtin_export(char **av, char **envp)
+static char	*add_quotes(char *env)
 {
 	int		i;
-	char	*name;
-	char	*value;
-	char	*error_msg;
+	int		j;
+	char	*tmp_char;
+
+	j = 0;
+	while (env[j] && env[j++] != '=')
+		;
+	if (!env[j] && env[j - 1] != '=')
+		return (NULL);
+	tmp_char = malljc(sizeof(char) * ft_strlen(env) + 3);
+	tmp_char[ft_strlen(env) + 2] = '\0';
+	i = 0;
+	j = 0;
+	while (env[j] != '=')
+		tmp_char[i++] = env[j++];
+	tmp_char[i++] = env[j++];
+	tmp_char[i++] = '"';
+	while (env[j])
+		tmp_char[i++] = env[j++];
+	tmp_char[i++] = '"';
+	return (tmp_char);
+}
+
+static int	print_env(t_data *data)
+{
+	char	*tmp_char;
+	int		i;
 
 	i = 0;
-	if (av[1] == NULL)
-		return (display_all_env_vars(envp));
-	i = 1;
-	while (av[i] != NULL)
+	if (!data->env)
+		return (EXIT_FAILURE);
+	while (data->env[i])
 	{
-		if (!is_valid_env_var_name(av[i]))
-		{
-			error_msg = "export: not a valid identifier\n";
-			write(STDERR, error_msg, ft_strlen(error_msg));
-			return (1);
-		}
-		name = ft_strtok(av[i], "=");
-		value = ft_strtok(NULL, "=");
-		if (name == NULL || value == NULL)
-		{
-			error_msg = "export: memory allocation error\n";
-			write(STDERR, error_msg, ft_strlen(error_msg));
-			return (1);
-		}
-		if (set_env_var(envp, name, value))
-		{
-			error_msg = "export: Error setting variable\n";
-			write(STDERR, error_msg, ft_strlen(error_msg));
-			return (1);
-		}
+		ft_putstr_fd("declare -x ", STDOUT_FILENO);
+		tmp_char = add_qujtes(data->env[i]);
+		if (tmp_char)
+			ft_putendl_fd(tmp_char, STDOUT_FILENO);
+		else
+			ft_putendl_fd(data->env[i], STDOUT_FILENO);
 		i++;
+		free(tmp_char);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
+}
+
+int	builtin_cmd(t_data *data, t_commands *cmds, int num_cmd)
+{
+	int		result;
+	int		index;
+
+	index = 1;
+	result = EXIT_SUCCESS;
+	if (!cmds->cmd[num_cmd].args[1])
+		return (print_env(data));
+	while (cmds->cmd[num_cmd].args[index])
+	{
+		if (is_valid_var_name(cmds->cmd[num_cmd].args[index]) == false)
+		{
+			error_msg("export", cmds->cmd[num_cmd].args[index],
+				"not a valid identifier", EXIT_FAILURE);
+			result = EXIT_FAILURE;
+		}
+		set_env_var(data, cmds->cmd[num_cmd].args[index], NULL);
+		index++;
+	}
+	return (result);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   is_valid_var_name.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:24:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 00:02:33 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/26 00:23:33 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/26 00:23:59 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+bool	is_valid_var_name(char *name)
 {
-	size_t	i;
-	int		cmp;
+	int	i;
 
-	if (n == 0)
-		return (0);
 	i = 0;
-	while ((str1[i] == str2[i]) && (str1[i] != '\0') && (str2[i] != '\0')
-		&& (i < (n - 1)))
+	if (!ft_isalpha(name[i]) && name[i] != '_')
+		return (false);
+	while (name[i] && name[i] != '=')
+	{
+		if (!ft_isalnum(name[i]) && name[i] != '_')
+			return (false);
 		i++;
-	cmp = (str1[i] - str2[i]);
-	return (cmp);
+	}
+	return (true);
 }

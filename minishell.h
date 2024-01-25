@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 23:40:39 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 00:24:08 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void		minishell(int ac, char **av, char **envp);
 int			main(int ac, char **av, char **envp);
 
 // BUILTINS
-int			builtin_cd(char **av, char **envp);
+int			builtin_cd(t_data *data, t_commands *cmds, int i);
 int			builtin_echo(char **av);
 int			builtin_env(char **envp);
 int			builtin_exit(char **av, int last_exit_status);
@@ -127,17 +127,9 @@ int			builtin_pwd(void);
 int			builtin_unset(char **av, char **envp);
 
 // EXEC
-int			execute_builtin(t_commands *cmds, char **envp, int last_exit_status);
-int			execute_external(t_commands *cmds, char **envp);
-void		execute(t_commands *cmds, char **envp, int last_exit_status);
 
 // ENV
-char		**copy_env(char **envp);
-int			env_var_count(char **envp);
-int			get_env_var_index(char **envp, char *var_name);
-char		*get_env_var(char **envp, char *var_name);
-int			set_env_var(char **envp, const char *name, const char *value);
-int			unset_env_var(char **envp, const char *var_name);
+bool		is_valid_var_name(char *name);
 
 // INIT
 bool		init_data(t_data *data, char **envp);
@@ -149,24 +141,8 @@ void		init_cmd(t_cmd *cmd);
 t_tokenizer	*init_tokenizer(const char *input);
 
 // LEXER
-char		*trim_input(const char *input);
-char		**tokenize_input(const char *input, t_commands *cmds);
-bool		is_quote(char c);
-bool		is_operator(char c);
-bool		is_env_var(char c);
-bool		convert_tokens_to_cmds(t_commands *cmds, char **parsed_cmds);
-int			count_tokens(const t_tokenizer *tokenizer);
-char		*get_token(const t_tokenizer *tokenizer, int index);
-void		advance_tokenizer(t_tokenizer *tokenizer);
-bool		more_tokens_available(const t_tokenizer *tokenizer);
-char		current_char(const t_tokenizer *tokenizer);
-void		handle_quotes(t_tokenizer *tokenizer);
-void		handle_operators(t_tokenizer *tokenizer);
-void		add_token(t_tokenizer *tokenizer, const char *start, int len);
-void		handle_env_variables(t_tokenizer *tokenizer);
 
 // PARSER
-void		parse_input(t_data *data);
 
 // PIPES
 void		create_pipes(t_commands *cmds, int index);
@@ -194,7 +170,7 @@ char		*ft_strcpy(char *dest, const char *src);
 char		*ft_strdup(const char *src);
 size_t		ft_strlen(char const *s);
 char		*ft_strndup(const char *s1, size_t n);
-int			ft_strncmp(const char *s1, const char *s2, unsigned int n);
+int			ft_strncmp(const char *str1, const char *str2, size_t n);
 void		ft_putchar(char c);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
@@ -207,6 +183,7 @@ int			ft_isdigit(int c);
 long		ft_strtol(const char *str, char **endptr, int base);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strsjoin(char *str, char *add);
+int			ft_atol(const char *str, bool *error);
 
 // SIGNALS
 void		signals_wait_cmd(void);

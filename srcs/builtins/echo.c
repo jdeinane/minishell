@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:09:59 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/22 15:16:03 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 00:03:02 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ int	builtin_echo(char **av)
 	}
 	if (newline)
 		write(STDOUT, "\n", 1);
-	return (0);
+	return (EXIT_SUCCESS);
 }

@@ -6,22 +6,26 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:01:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/23 18:49:21 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 00:05:35 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	builtin_env(char **envp)
+int	builtin_env(t_data *data, t_commands *cmds, int num_cmd)
 {
 	int	i;
 
 	i = 0;
-	while (envp[i] != NULL)
+	if (cmds->cmd[num_cmd].args[1] != NULL)
+		return (error_msg("env", NULL, "too many arguments", STDERR));
+	if (!data->env)
+		return (EXIT_FAILURE);
+	while (data->env[i] != NULL)
 	{
-		write(STDOUT, envp[i], ft_strlen(envp[i]));
-		write(STDOUT, "\n", 1);
+		if (ft_strchr(data->env[i], '='))
+			ft_putendl_fd(data->env[i], STDOUT);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

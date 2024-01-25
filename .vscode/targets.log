@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `srcs/builtins/cd.o', needed by `minishell'.  Stop.
 
 
-# Make data base, printed on Thu Jan 25 23:42:11 2024
+# Make data base, printed on Fri Jan 26 00:15:24 2024
 
 # Variables
 
@@ -27,7 +27,6 @@ VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # automatic
 @F = $(notdir $@)
 # makefile
- 
 CURDIR := /Users/jendiane/Documents/42/newnew_minishell
 # makefile
 SHELL = /bin/sh
@@ -35,7 +34,7 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"fr","osLocale":"fr-fr","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 93)
+# makefile (from `Makefile', line 94)
 CFLAGS = -Wall -Wextra -Werror -g
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
@@ -45,7 +44,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 INFOPATH = /opt/homebrew/share/info:
 # environment
 VSCODE_CWD = /
-# makefile (from `Makefile', line 130)
+# makefile (from `Makefile', line 131)
 define PQ
 
  .--""--.___.._
@@ -72,7 +71,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.mhlILXYbWG/Listeners
 %F = $(notdir $%)
 # environment
 DISPLAY = /private/tmp/com.apple.launchd.jH36bDwNcp/org.xquartz:0
-# makefile (from `Makefile', line 89)
+# makefile (from `Makefile', line 90)
 OBJS = $(SRCS:.c=.o)
 # environment
 PWD = /Users/jendiane/Documents/42/newnew_minishell
@@ -98,6 +97,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 ZSH = /Users/jendiane/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+ 
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
@@ -107,10 +107,10 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # makefile (from `Makefile', line 15)
-SRCS = srcs/builtins/cd.c srcs/builtins/echo.c srcs/builtins/env.c srcs/builtins/exit.c srcs/builtins/export.c srcs/builtins/pwd.c srcs/builtins/unset.c srcs/env/copy_env.c srcs/env/remove_env_var.c srcs/env/set_env_var.c srcs/env/update_env_var.c srcs/exec/exec_builtin.c srcs/exec/exec_command.c srcs/exec/execute.c srcs/exec/find_exec_path.c srcs/init/init_data.c srcs/init/init_env.c srcs/lexer/add_token.c srcs/lexer/handle_env_variables.c srcs/lexer/handle_pipes_redir.c srcs/lexer/handle_quotes.c srcs/lexer/handle_reg_char.c srcs/lexer/handle_whitespace.c srcs/lexer/token_input.c srcs/main/init_minishell.c srcs/main/main.c srcs/parser/check_token_order.c srcs/parser/expand_env.c srcs/parser/parse_command.c srcs/parser/parse_pipes_redirections.c srcs/parser/parse_reg_cmds.c srcs/pipes/close_pipes.c srcs/pipes/create_pipes.c srcs/pipes/exec_pipes_redirect.c srcs/pipes/setup_pipe_redir.c srcs/redirection/append.c srcs/redirection/heredoc.c srcs/redirection/input.c srcs/redirection/output.c srcs/redirection/redirection_handler.c srcs/signals/signal_handler.c srcs/libft/ft_calloc.c srcs/libft/ft_isalnum.c srcs/libft/ft_isdigit.c srcs/libft/ft_memcpy.c srcs/libft/ft_putchar.c srcs/libft/ft_putendl_fd.c srcs/libft/ft_strcat.c srcs/libft/ft_strchr.c srcs/libft/ft_strcmp.c srcs/libft/ft_strcpy.c srcs/libft/ft_strdup.c srcs/libft/ft_strlen.c srcs/libft/ft_strncmp.c srcs/libft/ft_strndup.c srcs/libft/ft_strtok.c srcs/libft/ft_strtrim.c srcs/libft/ft_isalpha.c srcs/libft/ft_split.c srcs/libft/ft_strncpy.c srcs/libft/ft_putstr_fd.c srcs/libft/ft_strtol.c srcs/libft/ft_strjoin.c srcs/libft/ft_memset.c srcs/libft/ft_strsjoin.c srcs/utils/check_args.c srcs/utils/exit_minishell.c srcs/utils/get_prompt.c srcs/utils/free_all.c srcs/utils/input_handler.c srcs/utils/is_trucnuche.c srcs/utils/path.c srcs/utils/error_msg.c 
+SRCS = srcs/builtins/cd.c srcs/builtins/echo.c srcs/builtins/env.c srcs/builtins/exit.c srcs/builtins/export.c srcs/builtins/pwd.c srcs/builtins/unset.c srcs/env/copy_env.c srcs/env/remove_env_var.c srcs/env/set_env_var.c srcs/env/update_env_var.c srcs/exec/exec_builtin.c srcs/exec/exec_command.c srcs/exec/execute.c srcs/exec/find_exec_path.c srcs/init/init_data.c srcs/init/init_env.c srcs/lexer/add_token.c srcs/lexer/handle_env_variables.c srcs/lexer/handle_pipes_redir.c srcs/lexer/handle_quotes.c srcs/lexer/handle_reg_char.c srcs/lexer/handle_whitespace.c srcs/lexer/token_input.c srcs/main/init_minishell.c srcs/main/main.c srcs/parser/check_token_order.c srcs/parser/expand_env.c srcs/parser/parse_command.c srcs/parser/parse_pipes_redirections.c srcs/parser/parse_reg_cmds.c srcs/pipes/close_pipes.c srcs/pipes/create_pipes.c srcs/pipes/exec_pipes_redirect.c srcs/pipes/setup_pipe_redir.c srcs/redirection/append.c srcs/redirection/heredoc.c srcs/redirection/input.c srcs/redirection/output.c srcs/redirection/redirection_handler.c srcs/signals/signal_handler.c srcs/libft/ft_calloc.c srcs/libft/ft_isalnum.c srcs/libft/ft_isdigit.c srcs/libft/ft_memcpy.c srcs/libft/ft_putchar.c srcs/libft/ft_putendl_fd.c srcs/libft/ft_strcat.c srcs/libft/ft_strchr.c srcs/libft/ft_strcmp.c srcs/libft/ft_strcpy.c srcs/libft/ft_strdup.c srcs/libft/ft_strlen.c srcs/libft/ft_strncmp.c srcs/libft/ft_strndup.c srcs/libft/ft_strtok.c srcs/libft/ft_strtrim.c srcs/libft/ft_isalpha.c srcs/libft/ft_split.c srcs/libft/ft_strncpy.c srcs/libft/ft_putstr_fd.c srcs/libft/ft_strtol.c srcs/libft/ft_strjoin.c srcs/libft/ft_memset.c srcs/libft/ft_strsjoin.c srcs/libft/ft_atol.c srcs/utils/check_args.c srcs/utils/exit_minishell.c srcs/utils/get_prompt.c srcs/utils/free_all.c srcs/utils/input_handler.c srcs/utils/is_trucnuche.c srcs/utils/path.c srcs/utils/error_msg.c 
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 91)
+# makefile (from `Makefile', line 92)
 CC = cc
 # default
 MAKE_VERSION := 3.81
@@ -124,7 +124,7 @@ NAME = minishell
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 95)
+# makefile (from `Makefile', line 96)
 LFLAGS = -lreadline
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
@@ -164,7 +164,7 @@ COMMAND_MODE = unix2003
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
-# makefile (from `Makefile', line 119)
+# makefile (from `Makefile', line 120)
 define BIBOU
            _       _     _          _ _ 
           (_)     (_)   | |        | | |
@@ -206,7 +206,6 @@ VSCODE_PID = 22022
 
 # Files
 
- 
 # Not a target:
 srcs/lexer/token_input.o:
 #  Implicit rule search has not been done.
@@ -314,7 +313,7 @@ srcs/libft/ft_isdigit.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-01-25 23:42:04
+#  Last modified 2024-01-26 00:15:23
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -363,6 +362,7 @@ srcs/exec/exec_builtin.o:
 #  File has not been updated.
 
 # Not a target:
+ 
 srcs/parser/expand_env.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -422,13 +422,13 @@ srcs/utils/get_prompt.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: srcs/builtins/cd.o srcs/builtins/echo.o srcs/builtins/env.o srcs/builtins/exit.o srcs/builtins/export.o srcs/builtins/pwd.o srcs/builtins/unset.o srcs/env/copy_env.o srcs/env/remove_env_var.o srcs/env/set_env_var.o srcs/env/update_env_var.o srcs/exec/exec_builtin.o srcs/exec/exec_command.o srcs/exec/execute.o srcs/exec/find_exec_path.o srcs/init/init_data.o srcs/init/init_env.o srcs/lexer/add_token.o srcs/lexer/handle_env_variables.o srcs/lexer/handle_pipes_redir.o srcs/lexer/handle_quotes.o srcs/lexer/handle_reg_char.o srcs/lexer/handle_whitespace.o srcs/lexer/token_input.o srcs/main/init_minishell.o srcs/main/main.o srcs/parser/check_token_order.o srcs/parser/expand_env.o srcs/parser/parse_command.o srcs/parser/parse_pipes_redirections.o srcs/parser/parse_reg_cmds.o srcs/pipes/close_pipes.o srcs/pipes/create_pipes.o srcs/pipes/exec_pipes_redirect.o srcs/pipes/setup_pipe_redir.o srcs/redirection/append.o srcs/redirection/heredoc.o srcs/redirection/input.o srcs/redirection/output.o srcs/redirection/redirection_handler.o srcs/signals/signal_handler.o srcs/libft/ft_calloc.o srcs/libft/ft_isalnum.o srcs/libft/ft_isdigit.o srcs/libft/ft_memcpy.o srcs/libft/ft_putchar.o srcs/libft/ft_putendl_fd.o srcs/libft/ft_strcat.o srcs/libft/ft_strchr.o srcs/libft/ft_strcmp.o srcs/libft/ft_strcpy.o srcs/libft/ft_strdup.o srcs/libft/ft_strlen.o srcs/libft/ft_strncmp.o srcs/libft/ft_strndup.o srcs/libft/ft_strtok.o srcs/libft/ft_strtrim.o srcs/libft/ft_isalpha.o srcs/libft/ft_split.o srcs/libft/ft_strncpy.o srcs/libft/ft_putstr_fd.o srcs/libft/ft_strtol.o srcs/libft/ft_strjoin.o srcs/libft/ft_memset.o srcs/libft/ft_strsjoin.o srcs/utils/check_args.o srcs/utils/exit_minishell.o srcs/utils/get_prompt.o srcs/utils/free_all.o srcs/utils/input_handler.o srcs/utils/is_trucnuche.o srcs/utils/path.o srcs/utils/error_msg.o
+minishell: srcs/builtins/cd.o srcs/builtins/echo.o srcs/builtins/env.o srcs/builtins/exit.o srcs/builtins/export.o srcs/builtins/pwd.o srcs/builtins/unset.o srcs/env/copy_env.o srcs/env/remove_env_var.o srcs/env/set_env_var.o srcs/env/update_env_var.o srcs/exec/exec_builtin.o srcs/exec/exec_command.o srcs/exec/execute.o srcs/exec/find_exec_path.o srcs/init/init_data.o srcs/init/init_env.o srcs/lexer/add_token.o srcs/lexer/handle_env_variables.o srcs/lexer/handle_pipes_redir.o srcs/lexer/handle_quotes.o srcs/lexer/handle_reg_char.o srcs/lexer/handle_whitespace.o srcs/lexer/token_input.o srcs/main/init_minishell.o srcs/main/main.o srcs/parser/check_token_order.o srcs/parser/expand_env.o srcs/parser/parse_command.o srcs/parser/parse_pipes_redirections.o srcs/parser/parse_reg_cmds.o srcs/pipes/close_pipes.o srcs/pipes/create_pipes.o srcs/pipes/exec_pipes_redirect.o srcs/pipes/setup_pipe_redir.o srcs/redirection/append.o srcs/redirection/heredoc.o srcs/redirection/input.o srcs/redirection/output.o srcs/redirection/redirection_handler.o srcs/signals/signal_handler.o srcs/libft/ft_calloc.o srcs/libft/ft_isalnum.o srcs/libft/ft_isdigit.o srcs/libft/ft_memcpy.o srcs/libft/ft_putchar.o srcs/libft/ft_putendl_fd.o srcs/libft/ft_strcat.o srcs/libft/ft_strchr.o srcs/libft/ft_strcmp.o srcs/libft/ft_strcpy.o srcs/libft/ft_strdup.o srcs/libft/ft_strlen.o srcs/libft/ft_strncmp.o srcs/libft/ft_strndup.o srcs/libft/ft_strtok.o srcs/libft/ft_strtrim.o srcs/libft/ft_isalpha.o srcs/libft/ft_split.o srcs/libft/ft_strncpy.o srcs/libft/ft_putstr_fd.o srcs/libft/ft_strtol.o srcs/libft/ft_strjoin.o srcs/libft/ft_memset.o srcs/libft/ft_strsjoin.o srcs/libft/ft_atol.o srcs/utils/check_args.o srcs/utils/exit_minishell.o srcs/utils/get_prompt.o srcs/utils/free_all.o srcs/utils/input_handler.o srcs/utils/is_trucnuche.o srcs/utils/path.o srcs/utils/error_msg.o
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 100):
+#  commands to execute (from `Makefile', line 101):
 	$(CC) -o $(NAME) $(OBJS) $(LFLAGS)
 	@echo "\033[32m ~~ ./minishell successfully created! ~~"
 	@echo "$$BIBOU"
@@ -456,7 +456,6 @@ srcs/utils/is_trucnuche.o:
 
 # Not a target:
 srcs/libft/ft_strsjoin.o:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -478,7 +477,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 111):
+#  commands to execute (from `Makefile', line 112):
 	rm -rf $(NAME)
 	@echo "\033[31m ~~ ./minishell successfully fdeleted! ~~"
 	
@@ -515,6 +514,12 @@ srcs/pipes/setup_pipe_redir.o:
 
 # Not a target:
 srcs/builtins/export.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/libft/ft_atol.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -578,7 +583,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 105):
+#  commands to execute (from `Makefile', line 106):
 	$(RM)
 	rm -rf $(OBJS)
 	@echo "\033[31m ~~ ./minishell successfully deleted! ~~"
@@ -605,6 +610,7 @@ srcs/libft/ft_isalpha.o:
 
 # Not a target:
 srcs/utils/input_handler.o:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -614,7 +620,6 @@ srcs/redirection/input.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 
 # Not a target:
 srcs/pipes/create_pipes.o:
@@ -742,7 +747,7 @@ bibou:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=85/1024=8%, Rehash=0, Collisions=7/182=4%
+# Load=86/1024=8%, Rehash=0, Collisions=7/184=4%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -754,6 +759,6 @@ bibou:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jan 25 23:42:11 2024
+# Finished Make data base on Fri Jan 26 00:15:24 2024
 
  

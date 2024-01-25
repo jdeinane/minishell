@@ -6,25 +6,55 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:07:50 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/22 16:10:24 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 00:15:39 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	builtin_exit(char **av, int last_exit_status)
+static int	last_exit_status(char *av, bool *error)
 {
-	long	status;
+	unsigned long long	i;
 
-	if (av[1] == NULL)
-		exit(last_exit_status);
-	if (!is_numeric(av[1]))
+	i = 0;
+	if (!av)
+		return (g_status_code);
+	while (is_space(av[i]))
+		i++;
+	if (av[i] == '-' || av[i] == '+')
+		i++;
+	if (!ft_isdigit(av[i]))
+		*error = true;
+	while (av[i])
 	{
-		write(STDERR_FILENO, "exit: numeric argument required\n", 32);
-		exit(255);
+		if (!ft_isdigit(av[i]) && !is_space(av[i]))
+			*error = true;
+		i++;
 	}
-	status = ft_strtol(av[1], NULL, 10);
-	if (status < 0 || status > 255)
-		status = (unsigned char) status;
-	exit((int)status);
+	i = ft_atol(av, error);
+	return (i % 256);
+}
+
+int	builtin_exit(t_data *data, t_commands *cmds, int num_cmds)
+{
+	int		exit_status;
+	bool	error;
+
+	error = false;
+	if (!cmds || !cmds->cmd[num_cmds].avs[1])
+		exit_status = g_status_code;
+	else
+	{
+		exit_status = last_exit_status(cmds->cmd[num_cmds].avs[1], &error);
+		if (error)
+			exit_status = error_msg("exit", cmds->cmd[num_cmds].avs[1],
+					"numeric avument required", STDERR_FILENO);
+		else if (cmds->cmd[num_cmds].av[2])
+			return (error_msg("exit", NULL, "too many avuments", EXIT_FAILURE));
+	}
+	close_fds(cmds, false);
+	free_cmds(cmds);
+	ft_putendl_fd("exit", STDOUT_FILENO);
+	exit_minishell(data, exit_status);
+	return (STDERR_FILENO);
 }
