@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 21:49:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/23 21:56:10 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:19:18 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_cmd(t_cmd *cmd)
 		cmd->args[i] = NULL;
 		i++;
 	}
-	cmd->redirections = malloc(sizeof(char*) * MAX_REDIRECTIONS);
+	cmd->redirections = malloc(sizeof(char *) * MAX_REDIRECTIONS);
 	if (!cmd->redirections)
 	{
 		free(cmd->args);

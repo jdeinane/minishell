@@ -6,43 +6,44 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:15 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 14:40:27 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:16:52 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int      count_words(const char *str, char c)
+static int	count_words(const char *str, char c)
 {
-        int     i;
-        int     trigger;
+	int	i;
+	int	flag;
 
-        i = 0;
-        trigger = 0;
-        while (*str)
-        {
-                if (*str != c && trigger == 0)
-                {
-                        trigger = 1;
-                        i++;
-                }
-                else if (*str == c)
-                        trigger = 0;
-                str++;
-        }
-        return (i);
+	i = 0;
+	flag = 0;
+	while (*str)
+	{
+		if (*str != c && flag == 0)
+		{
+			flag = 1;
+			i++;
+		}
+		else if (*str == c)
+			flag = 0;
+		str++;
+	}
+	return (i);
 }
-static char     *word_dup(const char *str, int start, int finish)
-{
-        char    *word;
-        int             i;
 
-        i = 0;
-        word = malloc((finish - start + 1) * sizeof(char));
-        while (start < finish)
-                word[i++] = str[start++];
-        word[i] = '\0';
-        return (word);
+static char	*word_dup(const char *str, int start, int finish)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	word = malloc((finish - start + 1) * sizeof(char));
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
 }
 
 char	**ft_split(char const *s, char c)

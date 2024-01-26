@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:36:43 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 17:54:30 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:17:19 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ bool	is_command(char **tokens, int token_index)
 
 bool	is_redirection(char *token)
 {
-	if (ft_strcmp(token, ">") == 0 || ft_strcmp(token, ">>") == 0 ||
-		ft_strcmp(token, "<") == 0 || ft_strcmp(token, "<<") == 0)
+	if (ft_strcmp(token, ">") == 0 || ft_strcmp(token, ">>") == 0
+		|| ft_strcmp(token, "<") == 0 || ft_strcmp(token, "<<") == 0)
 		return (true);
 	return (false);
 }

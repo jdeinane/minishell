@@ -6,11 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 00:13:01 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 00:14:57 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:16:43 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../verynew_minishell"
+#include "../../minishell.h"
 
 static bool	toolong(int sign, unsigned long long nb, bool *error)
 {
