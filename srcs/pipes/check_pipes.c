@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 18:33:17 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 17:17:48 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:39:28 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	reset_parenthesis(t_num_parenth *num_p, t_commands *cmds, int index)
 {
-	if (cmds->operators[index] == '|')
+	if (cmds->operators[index] != '|')
 		num_p->first_p = num_p->first_p -1;
 	else
 		num_p->last_p++;

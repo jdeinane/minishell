@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 00:24:08 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/26 17:58:59 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ typedef struct s_num_parenth
 	int	last_p;
 }	t_num_parenth;
 
-
 extern int	g_status_code;
 
 // MAIN
@@ -159,7 +158,6 @@ void		redirect_io(t_redirect *io, int index_cmd);
 void		restore_io(t_redirect *io);
 bool		check_file(t_redirect *io, t_commands *cmds, bool free);
 
-
 // LIBFT
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 char		*ft_strcat(char *dest, const char *src);
@@ -188,7 +186,6 @@ int			ft_atol(const char *str, bool *error);
 // SIGNALS
 void		signals_wait_cmd(void);
 void		signals_run_cmd(void);
-
 
 // UTILS
 int			is_space(int c);
