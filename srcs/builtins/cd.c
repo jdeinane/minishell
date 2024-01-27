@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 18:39:13 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 17:19:02 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/27 12:17:24 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	builtin_cd(t_data *data, t_commands *cmds, int i)
 	}
 	else if (cmds->cmd[i].args[2])
 		return (error_msg("cd", NULL, "too many arguments", EXIT_FAILURE));
-	else if (ft_strncmp(cmds->cmd[i].args[1][0] == '-'))
+	else if (ft_strncmp(cmds->cmd[i].args[1][0], '-', 2) == 0)
 	{
 		path = get_env_var_value(data->env, OLD_PWD);
 		if (!path)

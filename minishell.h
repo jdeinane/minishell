@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/27 12:11:27 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/27 12:19:12 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 
 # define MAX_PATH 4096
 # define MAX_ARGS 512
-# define MAX_REDIRECTIONS 4
 # define VAR_MAX_SIZE 1024
 
 # define OLD_PWD "OLDPWD"
@@ -92,18 +91,6 @@ typedef struct s_commands
 	t_cmd			*cmd;
 }	t_commands;
 
-typedef struct s_tokenizer
-{
-	char	**tokens;
-	char	*start;
-	char	*input;
-	char	current_quote;
-	bool	in_quote;
-	bool	error;
-	int		count;
-	int		size;
-}	t_tokenizer;
-
 typedef struct s_num_parenth
 {
 	int	first_p;
@@ -142,8 +129,7 @@ void		init_commands(t_data *data, t_commands *cmds);
 void		init_redirections(t_commands *cmds);
 void		init_pipe(t_commands *cmds);
 void		init_parenth(int *i, t_num_parenth *num_p);
-void		init_cmd(t_cmd *cmd);
-t_tokenizer	*init_tokenizer(const char *input);
+void		init_cmd(t_data *data, t_commands *cmds, int num_cmd);
 
 // LEXER
 
