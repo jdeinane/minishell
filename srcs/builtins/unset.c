@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:37:25 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 00:24:38 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/27 11:56:27 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	cmd_unset(t_data *data, t_commands *cmds, int num_cmd)
+int	builtin_unset(t_data *data, t_commands *cmds, int num_cmd)
 {
 	int	i;
 	int	index;

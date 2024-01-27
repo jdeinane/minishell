@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 17:58:59 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/01/27 12:11:27 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,16 +119,22 @@ int			main(int ac, char **av, char **envp);
 // BUILTINS
 int			builtin_cd(t_data *data, t_commands *cmds, int i);
 int			builtin_echo(char **av);
-int			builtin_env(char **envp);
-int			builtin_exit(char **av, int last_exit_status);
-int			builtin_export(char **av, char **envp);
+int			builtin_env(t_data *data, t_commands *cmds, int num_cmd);
+int			builtin_exit(t_data *data, t_commands *cmds, int num_cmds);
+int			builtin_cmd(t_data *data, t_commands *cmds, int num_cmd);
 int			builtin_pwd(void);
-int			builtin_unset(char **av, char **envp);
+int			builtin_unset(t_data *data, t_commands *cmds, int num_cmd);
 
 // EXEC
 
 // ENV
 bool		is_valid_var_name(char *name);
+char		*get_env_var_value(char **envp, char *var);
+bool		set_env_var(t_data *data, char *key, char *value);
+int			env_var_count(char **envp);
+int			get_env_var_index(char **env, char *var);
+void		env_var_remove(t_data *data, int index);
+char		**env_var_realloc(t_data *data, int len);
 
 // INIT
 bool		init_data(t_data *data, char **envp);

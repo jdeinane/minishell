@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:07:50 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 00:15:39 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/27 12:00:45 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int	builtin_exit(t_data *data, t_commands *cmds, int num_cmds)
 	bool	error;
 
 	error = false;
-	if (!cmds || !cmds->cmd[num_cmds].avs[1])
+	if (!cmds || !cmds->cmd[num_cmds].args[1])
 		exit_status = g_status_code;
 	else
 	{
-		exit_status = last_exit_status(cmds->cmd[num_cmds].avs[1], &error);
+		exit_status = last_exit_status(cmds->cmd[num_cmds].args[1], &error);
 		if (error)
-			exit_status = error_msg("exit", cmds->cmd[num_cmds].avs[1],
-					"numeric avument required", STDERR_FILENO);
-		else if (cmds->cmd[num_cmds].av[2])
-			return (error_msg("exit", NULL, "too many avuments", EXIT_FAILURE));
+			exit_status = error_msg("exit", cmds->cmd[num_cmds].args[1],
+					"numeric arguments required", STDERR_FILENO);
+		else if (cmds->cmd[num_cmds].args[2])
+			return (error_msg("exit", NULL, "too many arguments", EXIT_FAILURE));
 	}
 	close_fds(cmds, false);
 	free_cmds(cmds);
