@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/27 12:19:12 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/28 14:19:57 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@
 
 # define CMD_NOT_EXEC   126
 # define CMD_NOT_FOUND  127
+
+# define OR		1
+# define AND	2
+# define PIPE	3
 
 typedef struct s_redirect
 {
@@ -127,7 +131,7 @@ char		**env_var_realloc(t_data *data, int len);
 bool		init_data(t_data *data, char **envp);
 void		init_commands(t_data *data, t_commands *cmds);
 void		init_redirections(t_commands *cmds);
-void		init_pipe(t_commands *cmds);
+void		init_pipes(t_commands *cmds);
 void		init_parenth(int *i, t_num_parenth *num_p);
 void		init_cmd(t_data *data, t_commands *cmds, int num_cmd);
 
@@ -139,6 +143,7 @@ void		init_cmd(t_data *data, t_commands *cmds, int num_cmd);
 void		create_pipes(t_commands *cmds, int index);
 void		check_pipes(t_commands *cmds, int index);
 void		close_pipes(t_commands *cmds);
+void		close_pipes_fd(t_commands *cmds);
 
 // REDIRECTIONS
 int			handle_input(t_commands *cmds, char *part);

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:07:50 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/27 12:00:45 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/28 13:55:15 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	builtin_exit(t_data *data, t_commands *cmds, int num_cmds)
 			exit_status = error_msg("exit", cmds->cmd[num_cmds].args[1],
 					"numeric arguments required", STDERR_FILENO);
 		else if (cmds->cmd[num_cmds].args[2])
-			return (error_msg("exit", NULL, "too many arguments", EXIT_FAILURE));
+			return (error_msg("exit", NULL, "too many arguments", \
+					EXIT_FAILURE));
 	}
 	close_fds(cmds, false);
 	free_cmds(cmds);

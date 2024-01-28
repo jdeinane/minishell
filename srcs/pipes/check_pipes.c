@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 18:33:17 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 17:39:28 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/01/28 14:19:12 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	reset_parenthesis(t_num_parenth *num_p, t_commands *cmds, int index)
 {
-	if (cmds->operators[index] != '|')
+	if (cmds->operators[index] != PIPE)
 		num_p->first_p = num_p->first_p -1;
 	else
 		num_p->last_p++;
@@ -53,10 +53,10 @@ void	check_pipes(t_commands *cmds, int index)
 	int	i;
 
 	i = 0;
-	if (cmds->operators[index] != '|')
+	if (cmds->operators[index] != PIPE)
 		i = check_parenthesis(cmds, index);
 	if (i == 0)
 		i = index;
-	if (cmds->operators[i] == '|')
+	if (cmds->operators[i] == PIPE)
 		dup2(cmds->pipe[i + 1].fd[1], STDOUT);
 }

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 18:16:04 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/21 18:19:50 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/28 14:06:25 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,20 @@
 
 char	**get_paths(char **envp)
 {
+	size_t	i;
 	char	**paths;
-	char	*path_var;
-	char	*token;
-	int		path_count;
-	int		i;
-	int		j;
+	char	*trim_path;
 
 	i = 0;
-	path_var = NULL;
-	while (envp[i])
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-		{
-			path_var = envp[i] + 5;
-			break ;
-		}
+	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
-	}
-	if (path_var == NULL)
-		return (NULL);
-	path_count = 1;
-	while (path_var[i] != '\0')
+	if (env[i])
 	{
-		if (path_var[i] == ':')
-			path_count++;
-		i++;
+		trim_path = ft_substr(env[i], 5, ft_strlen(env[i]));
+		paths = ft_split(trim_path, ':');
+		free(trim_path);
+		return (paths);
 	}
-	paths = malloc((path_count + 1) * sizeof(char *));
-	if (paths == NULL)
+	else
 		return (NULL);
-	j = 0;
-	token = ft_strtok(path_var, ":");
-	while (token != NULL)
-	{
-		paths[j++] = ft_strdup(token);
-		token = ft_strtok(NULL, ":");
-	}
-	paths[j] = NULL;
-	return (paths);
 }

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 18:31:22 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/23 21:42:55 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/28 14:19:34 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_pipes(t_commands *cmds, int index)
 	{
 		if (cmds->operators[index])
 			check_pipes(cmds, index);
-		if (cmds->operators[index - 1] == '|')
+		if (cmds->operators[index - 1] == PIPE)
 			dup2(cmds->pipe[index].fd[0], STDIN);
 	}
 	close_pipes(cmds);
