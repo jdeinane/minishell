@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/29 14:18:11 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/29 23:42:58 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MAX_PATH 4096
 # define MAX_ARGS 512
 # define VAR_MAX_SIZE 1024
+# define MAX_TOKEN_LEN 1024
 
 # define OLD_PWD "OLDPWD"
 # define PWD "PWD"
@@ -133,7 +134,7 @@ void		init_commands(t_data *data, t_commands *cmds);
 void		init_redirections(t_commands *cmds);
 void		init_pipes(t_commands *cmds);
 void		init_parenth(int *i, t_num_parenth *num_p);
-void		init_cmd(t_data *data, t_commands *cmds, int num_cmd);
+t_cmd		*init_cmd(void);
 
 // LEXER
 
