@@ -6,27 +6,28 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:43:52 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/28 21:20:53 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:04:31 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	process_input(char *input, t_data *data)
+void	process_input(char *input, t_commands *cmds)
 {
-	int (index) = 0;
-	t_list (*tokens) = NULL;
-	while (input[index])
+	int (token_len) = 0;
+	int (current_cmd_index) = 0;
+	int (i) = 0;
+	char (*token) = malloc(MAX_ARGS * sizeof(char));
+	if (!token)
+		return ;
+	while (input[i] != '\0')
 	{
-		if (is_space(input[index]))
-			index++;
-		else if (input[index] == '\'' || input[index] == '"')
-			handle_quotes(&input, &index, &tokens);
-		else if (ft_strchr("<>|;", input[index]) != NULL)
-			handle_redir_and_pipes(&input, &index, &tokens);
-		else if (input[index] == '$')
-			handle_env_var(&input, &index, &tokens);
+		if (is_space(input[i]))
+			finalize_token(&token, &token_len, cmds, *current_cmd_index);
 		else
-			process_token(data, &input, &index, &tokens);
+			handle_character(input[i], &token, &token_len);
+		i++;
 	}
+	finalize_token(&token, &token_len, cmds, &current_cmd_index);
+	free(token);
 }
