@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:43:52 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/29 14:04:31 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:04:57 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	process_input(char *input, t_commands *cmds)
 	while (input[i] != '\0')
 	{
 		if (is_space(input[i]))
-			finalize_token(&token, &token_len, cmds, *current_cmd_index);
+			finalize_token(&token, &token_len, cmds, &current_cmd_index);
 		else
 			handle_character(input[i], &token, &token_len);
 		i++;

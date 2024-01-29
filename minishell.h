@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/28 14:19:57 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:18:11 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ long		ft_strtol(const char *str, char **endptr, int base);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strsjoin(char *str, char *add);
 int			ft_atol(const char *str, bool *error);
+void		*ft_realloc(void *ptr, size_t newsize);
 
 // SIGNALS
 void		signals_wait_cmd(void);
