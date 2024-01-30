@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jendiane/Documents/42/minishell_neww/srcs/lexer",
+      "program": "/Users/jendiane/Documents/42/minishell_neww/srcs/lexer/build/Debug/outDebug"
+    }
+  ]
+}
