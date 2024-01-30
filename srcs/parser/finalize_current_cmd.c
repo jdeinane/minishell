@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:09:25 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/30 20:21:55 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/30 23:20:12 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-bool	validate_command(t_cmd *cmd)
+static bool	validate_command(t_cmd *cmd)
 {
 	if (cmd->path == NULL || ft_strlen(cmd->path) == 0)
 	{
@@ -36,7 +36,6 @@ void	finalize_current_cmd(t_commands *cmd)
 	{
 		if (cmd->cmd[last_cmd_index].redirections)
 			handle_redirections(cmd, last_cmd_index);
-		// additional checks or setups for the command can be done here
 		if (!validate_command(&cmd->cmd[last_cmd_index]))
 		{
 			cmd->exit_value = -1;
