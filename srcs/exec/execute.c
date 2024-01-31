@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 09:30:20 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 10:02:47 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	execute(t_data *data)
 	while (i < cmds.num_cmds)
 	{
 		if (is_builtin(cmds.cmd[i]))
-			status = execute_builtin(&cmds.cmd[i]);
+			status = execute_builtin(data, &cmds, i);
 		else
 		{
 			pid = fork();
 			if (pid == 0)
 			{
-				setup_redirections_and_pipes(&cmds.cmd[i]);
+				setup_redirections_and_pipes(&cmds.cmd[i], &cmds, i);
 				execve(cmds.cmd[i].path, cmds.cmd[i].args, data->env);
 				exit(EXIT_FAILURE);
 			}
