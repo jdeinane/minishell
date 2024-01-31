@@ -6,11 +6,27 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 21:01:11 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/30 10:37:01 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:53:30 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static char	*get_env_var(char *name, char **env)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(name);
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], name, len) == 0 && env[i][len] == '=')
+			return (env[i] + len + 1);
+		i++;
+	}
+	return (NULL);
+}
 
 void	handle_special_chars(t_commands *cmds, int *i, char *input)
 {
@@ -53,7 +69,7 @@ void	handle_special_chars(t_commands *cmds, int *i, char *input)
 			(*i)++;
 		}
 		var_name[var_index] = '\0';
-		var_value = get_env_var(var_name);
+		var_value = get_env_var(var_name, cmds->env);
 		if (var_value != NULL)
 			cmds->cmds[cmds->num_cmds++] = ft_strdup(var_value);
 		else
