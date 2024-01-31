@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:18:31 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:45:36 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int			execute(t_data *data, t_commands *cmds, int num_cmd);
 int			execute_builtin(t_data *data, t_commands *cmds, int i);
 int			execute_local(t_data *data, t_commands *cmds, int num_cmd);
 int			execute_path(t_data *data, t_commands *cmds, int num_cmd);
+char		*get_cmd_path(t_commands *cmds, int index);
 
 // ENV
 bool		is_valid_var_name(char *name);
@@ -142,7 +143,7 @@ t_cmd		*init_cmd(void);
 
 // LEXER
 void		handle_special_chars(t_commands *cmds, int *i, char *input);
-void		process_input(char *input, t_commands *cmds);
+char		**process_input(char *input, t_commands *cmds);
 
 // PARSER
 void		parse_tokens(char **tokens, int num_tokens, t_commands *cmd);
@@ -198,6 +199,10 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strsjoin(char *str, char *add);
 int			ft_atol(const char *str, bool *error);
 void		*ft_realloc(void *ptr, size_t newsize);
+void		ft_putstr_fd(char *s, int fd);
+int			ft_isalpha(int c);
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlcpy(char *dst, const char *src, size_t len);
 
 // SIGNALS
 void		signals_wait_cmd(void);
@@ -219,7 +224,8 @@ char		**get_paths(char **envp);
 char		*get_prompt(void);
 bool		input_handler(t_data *data);
 int			is_space(int c);
-bool		is_builtin(t_cmd *cmd);
+bool		is_builtin(char *cmd);
 bool		is_in_out_file(t_redirect *io, t_commands *cmds, bool free);
+void		close_fds(t_commands *cmds, bool reset_io);
 
 #endif

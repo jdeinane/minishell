@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:41:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/30 10:47:58 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:45:09 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	process_input(char *input, t_commands *cmds)
+char	**process_input(char *input, t_commands *cmds)
 {
     char (buffer[MAX_TOKEN_LEN]) = {0};
     int (buf_index) = 0;

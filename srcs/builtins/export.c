@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:24:33 by jubaldj           #+#    #+#             */
-/*   Updated: 2024/01/31 09:43:42 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:23:55 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*add_quotes(char *env)
 		;
 	if (!env[j] && env[j - 1] != '=')
 		return (NULL);
-	tmp_char = malljc(sizeof(char) * ft_strlen(env) + 3);
+	tmp_char = malloc(sizeof(char) * ft_strlen(env) + 3);
 	tmp_char[ft_strlen(env) + 2] = '\0';
 	i = 0;
 	j = 0;
@@ -48,7 +48,7 @@ static int	print_env(t_data *data)
 	while (data->env[i])
 	{
 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
-		tmp_char = add_qujtes(data->env[i]);
+		tmp_char = add_quotes(data->env[i]);
 		if (tmp_char)
 			ft_putendl_fd(tmp_char, STDOUT_FILENO);
 		else

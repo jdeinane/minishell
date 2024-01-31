@@ -6,23 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 18:39:13 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/27 12:17:24 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:22:14 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static int	change_directory(t_data *data, char *path)
-{
-	char	*path_pwd;
-	char	buf[MAX_PATH];
-
-	if (chdir(path) != 0)
-		return (error_msg("cd", path, strerror(errno), 1));
-	getcwd(buf, MAX_PATH);
-	update_work_dir_var(data, path_pwd);
-	return (EXIT_SUCCESS);
-}
 
 static void	update_work_dir_var(t_data *data, char *path)
 {
@@ -41,6 +29,19 @@ static void	update_work_dir_var(t_data *data, char *path)
 	free(path);
 }
 
+static int	change_directory(t_data *data, char *path)
+{
+	char	*path_pwd;
+	char	buf[MAX_PATH];
+
+	if (chdir(path) != 0)
+		return (error_msg("cd", path, strerror(errno), 1));
+	getcwd(buf, MAX_PATH);
+	path_pwd = ft_strdup(buf);
+	update_work_dir_var(data, path_pwd);
+	return (EXIT_SUCCESS);
+}
+
 int	builtin_cd(t_data *data, t_commands *cmds, int i)
 {
 	char	*path;
@@ -57,7 +58,7 @@ int	builtin_cd(t_data *data, t_commands *cmds, int i)
 	}
 	else if (cmds->cmd[i].args[2])
 		return (error_msg("cd", NULL, "too many arguments", EXIT_FAILURE));
-	else if (ft_strncmp(cmds->cmd[i].args[1][0], '-', 2) == 0)
+	else if (ft_strncmp(cmds->cmd[i].args[1], "-", 2) == 0)
 	{
 		path = get_env_var_value(data->env, OLD_PWD);
 		if (!path)

@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/31 16:16:36 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/31 16:29:40 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/builtins/unset.c					\
 				srcs/env/is_valid_var_name.c			\
 				srcs/env/env_var_remove.c				\
-				srcs/env/get_env_var.c					\
-				srcs/env/update_env_var.c				\
+				srcs/env/set_env_var.c					\
 				srcs/exec/execute_builtin.c				\
 				srcs/exec/execute_local.c				\
 				srcs/exec/execute_path.c				\
@@ -80,7 +79,9 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/libft/ft_memset.c					\
 				srcs/libft/ft_strsjoin.c				\
 				srcs/libft/ft_atol.c					\
+				srcs/libft/ft_strlcpy.c					\
 				srcs/utils/check_args.c					\
+				srcs/utils/clean.c						\
 				srcs/utils/exit_minishell.c				\
 				srcs/utils/get_prompt.c					\
 				srcs/utils/free_all.c					\

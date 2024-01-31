@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:36:43 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:18:04 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:36:43 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ int	is_space(int c)
 	return (0);
 }
 
-bool	is_builtin(t_cmd *cmd)
+bool	is_builtin(char *cmd)
 {
-	if (ft_strcmp(cmd->path, "echo") == 0)
+	if (ft_strcmp(cmd, "echo") == 0)
 		return (true);
-	else if (ft_strcmp(cmd->path, "cd") == 0)
+	else if (ft_strcmp(cmd, "cd") == 0)
 		return (true);
-	else if (ft_strcmp(cmd->path, "pwd") == 0)
+	else if (ft_strcmp(cmd, "pwd") == 0)
 		return (true);
-	else if (ft_strcmp(cmd->path, "export") == 0)
+	else if (ft_strcmp(cmd, "export") == 0)
 		return (true);
-	else if (ft_strcmp(cmd->path, "unset") == 0)
+	else if (ft_strcmp(cmd, "unset") == 0)
 		return (true);
-	else if (ft_strcmp(cmd->path, "env") == 0)
+	else if (ft_strcmp(cmd, "env") == 0)
 		return (true);
-	else if (ft_strcmp(cmd->path, "exit") == 0)
+	else if (ft_strcmp(cmd, "exit") == 0)
 		return (true);
 	return (false);
 }
