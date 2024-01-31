@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/26 00:15:23 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/31 16:16:36 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,30 +19,32 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/builtins/export.c					\
 				srcs/builtins/pwd.c						\
 				srcs/builtins/unset.c					\
-				srcs/env/copy_env.c						\
-				srcs/env/remove_env_var.c				\
-				srcs/env/set_env_var.c					\
+				srcs/env/is_valid_var_name.c			\
+				srcs/env/env_var_remove.c				\
+				srcs/env/get_env_var.c					\
 				srcs/env/update_env_var.c				\
-				srcs/exec/exec_builtin.c				\
-				srcs/exec/exec_command.c				\
+				srcs/exec/execute_builtin.c				\
+				srcs/exec/execute_local.c				\
+				srcs/exec/execute_path.c				\
 				srcs/exec/execute.c						\
-				srcs/exec/find_exec_path.c				\
+				srcs/init/init_cmd.c					\
+				srcs/init/init_commands.c				\
 				srcs/init/init_data.c					\
-				srcs/init/init_env.c					\
-				srcs/lexer/add_token.c					\
-				srcs/lexer/handle_env_variables.c		\
-				srcs/lexer/handle_pipes_redir.c			\
-				srcs/lexer/handle_quotes.c				\
-				srcs/lexer/handle_reg_char.c			\
-				srcs/lexer/handle_whitespace.c			\
-				srcs/lexer/token_input.c				\
+				srcs/init/init_parenthesis.c			\
+				srcs/init/init_redirections.c			\
+				srcs/init/init_pipes.c					\
+				srcs/lexer/handle_special_chars.c		\
+				srcs/lexer/process_input.c				\
 				srcs/main/init_minishell.c				\
 				srcs/main/main.c						\
-				srcs/parser/check_token_order.c			\
-				srcs/parser/expand_env.c				\
-				srcs/parser/parse_command.c				\
-				srcs/parser/parse_pipes_redirections.c	\
-				srcs/parser/parse_reg_cmds.c			\
+				srcs/parser/add_arg_to_cmd.c			\
+				srcs/parser/check_cmd.c					\
+				srcs/parser/finalize_current_cmd.c		\
+				srcs/parser/handle_redirection.c		\
+				srcs/parser/init_new_cmd.c				\
+				srcs/parser/parse_tokens.c				\
+				srcs/parser/prepare_for_next.c			\
+				srcs/parser/reset_parsing_state.c		\
 				srcs/pipes/close_pipes.c				\
 				srcs/pipes/create_pipes.c				\
 				srcs/pipes/exec_pipes_redirect.c		\

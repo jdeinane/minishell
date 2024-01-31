@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 18:16:04 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/28 14:06:25 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:17:29 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	**get_paths(char **envp)
 	char	*trim_path;
 
 	i = 0;
-	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
+	while (envp[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
-	if (env[i])
+	if (envp[i])
 	{
 		trim_path = ft_substr(env[i], 5, ft_strlen(env[i]));
 		paths = ft_split(trim_path, ':');

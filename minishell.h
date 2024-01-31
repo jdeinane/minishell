@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/29 23:42:58 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:18:31 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,15 @@ int			builtin_cd(t_data *data, t_commands *cmds, int i);
 int			builtin_echo(char **av);
 int			builtin_env(t_data *data, t_commands *cmds, int num_cmd);
 int			builtin_exit(t_data *data, t_commands *cmds, int num_cmds);
-int			builtin_cmd(t_data *data, t_commands *cmds, int num_cmd);
+int			builtin_export(t_data *data, t_commands *cmds, int num_cmd);
 int			builtin_pwd(void);
 int			builtin_unset(t_data *data, t_commands *cmds, int num_cmd);
 
 // EXEC
+int			execute(t_data *data, t_commands *cmds, int num_cmd);
+int			execute_builtin(t_data *data, t_commands *cmds, int i);
+int			execute_local(t_data *data, t_commands *cmds, int num_cmd);
+int			execute_path(t_data *data, t_commands *cmds, int num_cmd);
 
 // ENV
 bool		is_valid_var_name(char *name);
@@ -137,8 +141,21 @@ void		init_parenth(int *i, t_num_parenth *num_p);
 t_cmd		*init_cmd(void);
 
 // LEXER
+void		handle_special_chars(t_commands *cmds, int *i, char *input);
+void		process_input(char *input, t_commands *cmds);
 
 // PARSER
+void		parse_tokens(char **tokens, int num_tokens, t_commands *cmd);
+void		add_arg_to_cmd(t_commands *cmd, char *token);
+bool		is_command(char *token);
+bool		is_redirection(char *token);
+bool		is_argument(char *token);
+bool 		is_pipe(char *token) ;
+void		finalize_current_cmd(t_commands *cmd);
+void 		handle_redirection(t_commands *cmd, char *token, char *next_token);
+void		init_new_cmd(t_commands *cmd, char *token);
+void		prepare_for_next_cmd(t_commands *cmd);
+void		reset_parsing_state(t_commands *cmd);
 
 // PIPES
 void		create_pipes(t_commands *cmds, int index);
@@ -187,25 +204,22 @@ void		signals_wait_cmd(void);
 void		signals_run_cmd(void);
 
 // UTILS
-int			is_space(int c);
-bool		is_command(char **tokens, int token_index);
-char		**get_paths(char **envp);
-bool		is_numeric(const char *str);
-bool		is_digit2(char c, int base);
 bool		check_args(int ac, char **av);
-void		exit_minishell(t_data *data, int status_code);
-bool		input_handler(t_data *data);
-char		*get_prompt(void);
-int			skip_whitespace(const char *str);
-bool		clear_prev_input(t_redirect *io, bool in_file);
+void		free_io(t_redirect *io);
+void		free_cmds(t_commands *cmds);
 void		free_ptr(void *ptr);
 void		free_str(char **str);
-void		close_fds(t_commands *cmds, bool reset_io);
-void		free_cmds(t_commands *cmds);
-void		free_io(t_redirect *io);
-bool		is_argument(char **tokens, int token_index, t_commands *cmds);
-bool		is_redirection(char *token);
-bool		is_pipe(const char *token);
+bool		clear_prev_input(t_redirect *io, bool in_file);
+void		free_data(t_data *data, bool exit_shell);
+void		free_pipes(t_commands *cmds);
 int			error_msg(char *cmd, char *spec, char *msg, int status_code);
+void		exit_minishell(t_data *data, int status_code);
+void		free_exit(t_data *data, t_commands *cmds, int status_code);
+char		**get_paths(char **envp);
+char		*get_prompt(void);
+bool		input_handler(t_data *data);
+int			is_space(int c);
+bool		is_builtin(t_cmd *cmd);
+bool		is_in_out_file(t_redirect *io, t_commands *cmds, bool free);
 
 #endif
