@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/31 16:29:40 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/01/31 17:01:01 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/env/is_valid_var_name.c			\
 				srcs/env/env_var_remove.c				\
 				srcs/env/set_env_var.c					\
+				srcs/env/get_env_var.c					\
 				srcs/exec/execute_builtin.c				\
 				srcs/exec/execute_local.c				\
 				srcs/exec/execute_path.c				\

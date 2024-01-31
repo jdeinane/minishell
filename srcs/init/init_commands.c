@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:39:56 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:46:07 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 17:26:42 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	init_commands(t_data *data, t_commands *cmds)
 	char		*new_input;
 
 	new_input = trim_input(data->user_input);
-	cmds->cmds = process_input(new_input, cmds);
+	cmds->cmds = tokenize_input(new_input);
 	free(new_input);
 	i = 0;
 	if (cmds->exit_value == 0)

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:38:48 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 16:56:03 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	execute(t_data *data, t_commands *cmds, int num_cmd)
 	int		status;
 
 	status = 0;
-	process_input(data->user_input, cmds);
-	init_commands(data, cmds);
-	parse_tokens(cmds->tokens, num_cmd, cmds);
 	if (cmds->operators[0])
 		create_pipes(cmds, num_cmd);
 	if (is_redirection_cmd(cmds, num_cmd) && is_in_out_file(cmds->io, cmds, true) == false)

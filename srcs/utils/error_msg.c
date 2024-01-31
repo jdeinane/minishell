@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 23:23:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/25 23:40:15 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 17:06:33 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	error_msg(char *cmd, char *spec, char *msg, int status_code)
 
 	if (cmd != NULL)
 		is_quote = with_quotes(cmd);
-	error_msg = ft_strsjoin("minishell: ");
+	error_msg = ft_strdup("minishell: ");
 	if (cmd != NULL)
 	{
 		error_msg = ft_strsjoin(error_msg, cmd);
