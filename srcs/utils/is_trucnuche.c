@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:36:43 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/30 15:46:53 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 09:36:21 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,23 @@ bool	is_numeric(const char *str)
 		i++;
 	}
 	return (true);
+}
+
+bool	is_builtin(t_cmd *cmd)
+{
+	if (ft_strcmp(cmd->path, "echo") == 0)
+		return (true);
+	else if (ft_strcmp(cmd->path, "cd") == 0)
+		return (true);
+	else if (ft_strcmp(cmd->path, "pwd") == 0)
+		return (true);
+	else if (ft_strcmp(cmd->path, "export") == 0)
+		return (true);
+	else if (ft_strcmp(cmd->path, "unset") == 0)
+		return (true);
+	else if (ft_strcmp(cmd->path, "env") == 0)
+		return (true);
+	else if (ft_strcmp(cmd->path, "exit") == 0)
+		return (true);
+	return (false);
 }

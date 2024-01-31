@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:24:33 by jubaldj           #+#    #+#             */
-/*   Updated: 2024/01/26 00:20:53 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 09:43:42 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	print_env(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-int	builtin_cmd(t_data *data, t_commands *cmds, int num_cmd)
+int	builtin_export(t_data *data, t_commands *cmds, int num_cmd)
 {
 	int		result;
 	int		index;
