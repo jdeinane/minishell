@@ -6,50 +6,39 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 10:02:47 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 15:53:36 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	execute(t_data *data)
+int	execute(t_data *data, t_commands *cmds, int num_cmd)
 {
-	char		**tokens;
-	int			num_tokens;
-	t_commands	cmds;
-	int			status;
-	pid_t		pid;
-	int			i;
+	int	status;
 
 	status = 0;
-	i = 0;
 	process_input(data->user_input, &cmds);
 	init_commands(data, &cmds);
 	parse_tokens(&cmds);
-	while (i < cmds.num_cmds)
+	if (cmds->operators[0])
+		create_pipes(cmds, num_cmd);
+	if (is_redirection_cmd(cmds, num_cmd) && is_in_out_file(cmds->io, cmds, true) == false)
+		exit_minishell(data, EXIT_FAILURE);
+	redirect_io(cmds->io, num_cmd);
+	close_fds(cmds, false);
+	if (is_builtin(cmds->cmd[num_cmd].args[0]))
+		status = execute_builtin(data, cmds, num_cmd);
+	else
 	{
-		if (is_builtin(cmds.cmd[i]))
-			status = execute_builtin(data, &cmds, i);
-		else
+		if (ft_strchr(cmds->cmd[num_cmd].args[0], '/') == NULL)
 		{
-			pid = fork();
-			if (pid == 0)
-			{
-				setup_redirections_and_pipes(&cmds.cmd[i], &cmds, i);
-				execve(cmds.cmd[i].path, cmds.cmd[i].args, data->env);
-				exit(EXIT_FAILURE);
-			}
-			else if (pid > 0)
-				waitpid(pid, &status, 0);
-			else
-			{
-				perror("fork");
-				return (EXIT_FAILURE);
-			}
+			status = execute_path(data, cmds, num_cmd);
+			if (status != CMD_NOT_FOUND)
+				free_exit(data, cmds, EXIT_SUCCESS);
 		}
-		i++;
+		status = execute_local(data, cmds, num_cmd);
 	}
-	free_tokens(tokens, num_tokens);
-	free_cmds(&cmds);
-	return (WEXITSTATUS(status));
+	free_cmds(cmds);
+	exit_minishell(data, status);
+	return (status);
 }

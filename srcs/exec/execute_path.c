@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup.c                                            :+:      :+:    :+:   */
+/*   execute_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 09:50:06 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 10:02:30 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/31 15:52:00 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/01/31 15:53:26 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	setup_redirections_and_pipes(t_cmd *cmd, t_commands *cmds, int cmd_index)
+int	execute_path(t_data *data, t_commands *cmds, int num_cmd)
 {
-	handle_redirections(cmds, cmd_index);
-	if (cmd_index > 0 && cmds->operators[cmd_index - 1] == PIPE)
-		dup2(cmds->pipe[cmd_index - 1].fd[0], STDIN_FILENO);
-	if (cmds->operators[cmd_index] == PIPE)
-		dup2(cmds->pipe[cmd_index].fd[1], STDOUT_FILENO);
-	close_pipes_fd(cmds);
+	cmds->cmd[num_cmd].path = get_cmd_path(cmds, num_cmd);
+	if (!cmds->cmd[num_cmd].path)
+		return (CMD_NOT_FOUND);
+	if (execve(cmds->cmd[num_cmd].path, cmds->cmd[num_cmd].args, data->env) == -1)
+		error_msg("execve", NULL, strerror(errno), errno);
+	return (EXIT_FAILURE);
 }
