@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/jendiane/Documents/42/minishell_neww/srcs/lexer",
-      "program": "/Users/jendiane/Documents/42/minishell_neww/srcs/lexer/build/Debug/outDebug"
+      "cwd": "/Users/jendiane/Documents/42/minishell_neww/srcs/exec",
+      "program": "/Users/jendiane/Documents/42/minishell_neww/srcs/exec/build/Debug/outDebug"
     }
   ]
 }

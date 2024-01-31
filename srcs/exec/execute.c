@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 00:17:23 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/01/31 09:30:20 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 int	execute(t_data *data)
 {
-	int			i;
-	int			status;
+	char		**tokens;
+	int			num_tokens;
 	t_commands	cmds;
+	int			status;
 	pid_t		pid;
+	int			i;
 
-	i = 0;
 	status = 0;
-	parse_input(data->user_input, &cmds);
+	i = 0;
+	process_input(data->user_input, &cmds);
+	init_commands(data, &cmds);
+	parse_tokens(&cmds);
 	while (i < cmds.num_cmds)
 	{
 		if (is_builtin(cmds.cmd[i]))
@@ -43,7 +47,9 @@ int	execute(t_data *data)
 				return (EXIT_FAILURE);
 			}
 		}
+		i++;
 	}
+	free_tokens(tokens, num_tokens);
 	free_cmds(&cmds);
 	return (WEXITSTATUS(status));
 }
