@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_token.c                                        :+:      :+:    :+:   */
+/*   handle_parentheses.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 17:32:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/01 00:17:52 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/02/01 10:48:17 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/02/01 10:50:47 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	add_token(char **tokens, int *size, char *token, int *token_len)
+void	lexer_parentheses(char **tokens, int *token_index, \
+			char *current_token, int *token_len, char c)
 {
-	if (*token_len == 0)
-		return ;
-	token[*token_len] = '\0';
-	(*size)++;
-	*tokens = realloc(*tokens, sizeof(char *) * (*size + 1));
-	(*tokens)[*size - 1] =ft_strdup(token);
-	*token_len = 0;
+	if (*token_len > 0)
+	{
+		current_token[*token_len] = '\0';
+		tokens[(*token_index)++] = ft_strdup(current_token);
+		*token_len = 0;
+	}
+	char parenthesis_token[2] = {c, '\0'};
+	tokens[(*token_index)++] = ft_strdup(parenthesis_token);
 }

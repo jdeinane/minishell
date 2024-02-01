@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:41:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/01 10:42:19 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/01 11:07:34 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	add_char_to_token(char *token, int *len, char c)
+void	add_char_to_token(char *token, int *len, char c)
 {
 	token[*len] = c;
 	(*len)++;
@@ -67,14 +67,23 @@ char	**tokenize_input(const char *input)
 			i += skip;
 			if (!in_quote && c == '|')
 				lexer_operator(tokens, &token_index, current_token, &token_len, c);
+			if (!in_quote && (c == '(' || c == ')'))
+				lexer_parentheses(tokens, &token_index, current_token, &token_len, c);
+			if (!in_quote && c == '$')
+				expand_variable(tokens, &token_index, current_token, &token_len, c, input, &i);
+			if (!error_lexor(tokens, &token_index, current_token, token_len))
+				return (NULL);
 		}
 		else
 			add_char_to_token(current_token, &token_len, c);
-		// handle parentheses
-		// handle var expension
-		// ad error checking and memory management
 		i++;
 	}
-	// finalize last token
+	if (token_len > 0)
+	{
+		current_token[token_len] = '\0';
+		tokens[token_index] = ft_strdup(current_token);
+		token_index++;
+	}
+	tokens[token_index] = NULL;
 	return (tokens);
 }
