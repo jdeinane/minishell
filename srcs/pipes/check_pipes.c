@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 18:33:17 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/28 14:19:12 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:19:28 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	reset_parenthesis(t_num_parenth *num_p, t_commands *cmds, int index)
+static void	reset_parentheses(t_num_parenth *num_p, t_commands *cmds, int index)
 {
 	if (cmds->operators[index] != PIPE)
 		num_p->first_p = num_p->first_p -1;
@@ -20,7 +20,7 @@ static void	reset_parenthesis(t_num_parenth *num_p, t_commands *cmds, int index)
 		num_p->last_p++;
 }
 
-static int	check_parenthesis(t_commands *cmds, int index)
+static int	check_parentheses(t_commands *cmds, int index)
 {
 	int				i;
 	int				j;
@@ -35,7 +35,7 @@ static int	check_parenthesis(t_commands *cmds, int index)
 		while (cmds->cmds[i][j])
 		{
 			if (cmds->cmds[i][j] == ')')
-				reset_parenthesis(&num_p, cmds, i);
+				reset_parentheses(&num_p, cmds, i);
 			j++;
 		}
 		i++;
@@ -54,7 +54,7 @@ void	check_pipes(t_commands *cmds, int index)
 
 	i = 0;
 	if (cmds->operators[index] != PIPE)
-		i = check_parenthesis(cmds, index);
+		i = check_parentheses(cmds, index);
 	if (i == 0)
 		i = index;
 	if (cmds->operators[i] == PIPE)

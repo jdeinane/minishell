@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/01/31 17:01:01 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/02/01 10:18:52 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/init/init_cmd.c					\
 				srcs/init/init_commands.c				\
 				srcs/init/init_data.c					\
-				srcs/init/init_parenthesis.c			\
+				srcs/init/init_parentheses.c			\
 				srcs/init/init_redirections.c			\
 				srcs/init/init_pipes.c					\
 				srcs/lexer/handle_special_chars.c		\

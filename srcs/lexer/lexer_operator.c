@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_parenthesis.c                                 :+:      :+:    :+:   */
+/*   lexer_operator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 18:29:53 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/23 18:30:31 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/31 17:33:49 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/02/01 10:42:06 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	init_parenth(int *i, t_num_parenth *num_p)
+void	lexer_operator(char **tokens, int *token_index, char *current_token, \
+		int *token_len, char c)
 {
-	*i = 0;
-	num_p->first_p = 0;
-	num_p->last_p = 0;
+	if (*token_len > 0)
+	{
+		current_token[*token_len] = '\0';
+		tokens[(*token_index)++] = ft_strdup(current_token);
+		*token_len = 0;
+	}
+	if (c == '|')
+		tokens[(*token_index)++] = ft_strdup("|");
 }

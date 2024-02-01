@@ -6,64 +6,75 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:41:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/01 00:19:05 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:42:19 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static bool	is_separator(char c)
+static void	add_char_to_token(char *token, int *len, char c)
 {
-    return (c == ' ' || c == '|' || c == '>' || c == '<' || c == '&' \
-	|| c == '(' || c == ')');
+	token[*len] = c;
+	(*len)++;
+	token[*len] = '\0';
 }
 
 char	**tokenize_input(const char *input)
 {
 	char	**tokens;
+	char	*current_token[MAX_TOKEN_LEN];
+	char	special_token[2];
 	char	c;
-	char	token[MAX_TOKEN_LEN];
-	int		size;
-	int		token_len;
-	bool	in_quote;
 	int		i;
+	int		skip;
+	int		token_len;
+	int		token_index;
+	bool	in_quote;
 
-	tokens = NULL;
-	size = 0;
+	token_index = 0;
 	token_len = 0;
 	in_quote = false;
 	i = 0;
-	tokens = malloc(sizeof(char *));
-	if (!tokens)
-		return (NULL);
-    tokens[0] = NULL;
-    while (input[i] != '\0') 
+	skip = 0;
+	current_token[MAX_TOKEN_LEN] = NULL;
+	tokens = init_token_array();
+	while (input[i] != '\0')
 	{
-        c = input[i];
-        if ((c == '\"' || c == '\'') && !in_quote)
+		c = input[i];
+		if (c == '"' || c == '\'')
 		{
-            in_quote = true;
-            continue;
+			if (!in_quote)
+				in_quote = true;
+			else
+				in_quote = false;
 		}
-        else if ((c == '\"' || c == '\'') && in_quote) 
+		else if (!in_quote && (is_space(c) || is_special_char(c)))
 		{
-            in_quote = false;
-            continue;
-        }
-        if (!in_quote && is_special_char(c))
-		{
-            add_token(&tokens, &size, token, &token_len);
-            token[0] = c;
-            token[1] = '\0';
-            add_token(&tokens, &size, token, &token_len);
+			if (token_len > 0)
+			{
+				current_token[token_len] = '\0';
+				tokens[token_index++] = ft_strdup(current_token);
+				ft_memset(current_token, 0, MAX_TOKEN_LEN);
+				token_len = 0;
+			}
+			if (is_special_char(c) && c != ' ')
+			{
+				special_token[2] = {c, '\0'};
+				tokens[token_index++] = ft_strdup(special_token);
+			}
+			if (!in_quote && (c == '>' || c == '<'))
+				skip = lexer_redirections(tokens, &token_index, current_token, &token_len, c, input[i + 1]);
+			i += skip;
+			if (!in_quote && c == '|')
+				lexer_operator(tokens, &token_index, current_token, &token_len, c);
 		}
-        else if (!in_quote && is_separator(c))
-            add_token(&tokens, &size, token, &token_len);
-        else
-            token[token_len++] = c;
+		else
+			add_char_to_token(current_token, &token_len, c);
+		// handle parentheses
+		// handle var expension
+		// ad error checking and memory management
 		i++;
-    }
-    add_token(&tokens, &size, token, &token_len);
-    tokens[size] = NULL;
-    return (tokens);
+	}
+	// finalize last token
+	return (tokens);
 }

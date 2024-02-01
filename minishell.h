@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:45:36 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/01 10:28:59 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ bool		is_redirection(char *token);
 bool		is_argument(char *token);
 bool 		is_pipe(char *token) ;
 void		finalize_current_cmd(t_commands *cmd);
-void 		handle_redirection(t_commands *cmd, char *token, char *next_token);
 void		init_new_cmd(t_commands *cmd, char *token);
 void		prepare_for_next_cmd(t_commands *cmd);
 void		reset_parsing_state(t_commands *cmd);
