@@ -6,84 +6,109 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:41:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/01 11:07:34 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 13:29:08 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	add_char_to_token(char *token, int *len, char c)
+static void	handle_quotes(t_index *i_data, const char *str, t_commands *cmds)
 {
-	token[*len] = c;
-	(*len)++;
-	token[*len] = '\0';
+	i_data->malloc_size++;
+	if (s[i_data->i++] == '\'')
+	{
+		while (str[i_data->i] && str[i_data->i++] != '\'')
+			i_data->malloc_size++;
+	}
+	else
+	{
+		while (str[i_data->i] && str[i_data->i++] != '\"')
+				i_data->malloc_size++;
+	}
+	if (!str[i_data->i] && str[i_data->i - 1] != '\"' && str[i_data->i - 1] != '\'')
+		quotes_error(i_data, str, cmds);
+	else
+		i_data->malloc_size++;
 }
 
-char	**tokenize_input(const char *input)
+static void	get_len(t_index *i_data, const char *str, t_commands *cmds)
 {
-	char	**tokens;
-	char	*current_token[MAX_TOKEN_LEN];
-	char	special_token[2];
-	char	c;
-	int		i;
-	int		skip;
-	int		token_len;
-	int		token_index;
-	bool	in_quote;
+	i_data->malloc_size = 0;
+	while (str[i_data->i] && str[i_data->i] != '&' && str[i_data->i] != '|')
+	{
+		if (str[i_data->i] == '\'' || str[i_data->i] == '\"')
+			handle_quotes(i_data, str, cmds);
+		if (str[i_data->i])
+			i_data->malloc_size++;
+		if (str[i_data->i])
+			i_data->i++;
+	}
+	if (str[i_data->i] == '&' && str[i_data->i + 1] == '&')
+		i_data->i = i_data->i + 2;
+	if (str[i_data->i] == '|' && str[i_data->i + 1] == '|')
+		i_data->i = i_data->i + 2;
+	if (str[i_data->i] == '|' && str[i_data->i - 1] != '|' && str[i_data->i - 1] \
+		!= '&')
+		i_data->i++;
+	lexer_errors(i_data, str, cmds);
+}
 
-	token_index = 0;
-	token_len = 0;
-	in_quote = false;
-	i = 0;
-	skip = 0;
-	current_token[MAX_TOKEN_LEN] = NULL;
-	tokens = init_token_array();
-	while (input[i] != '\0')
+
+static void	ft_split2(char **s1, char const *s2, size_t count, t_commands *cmds)
+{
+	t_index	i_data;
+
+	i_data.i = 0;
+	i_data.j = 0;
+	while (i_data.j < count)
 	{
-		c = input[i];
-		if (c == '"' || c == '\'')
+		get_len(&i_data, s2, cmds);
+		s1[i_data.j] = (char *)malloc((i_data.malloc_size + 1) * sizeof(char));
+		s1[i_data.j][i_data.malloc_size] = '\0';
+		if (s1[i_data.j++] == NULL)
 		{
-			if (!in_quote)
-				in_quote = true;
-			else
-				in_quote = false;
+			s1 = NULL;
+			break ;
 		}
-		else if (!in_quote && (is_space(c) || is_special_char(c)))
-		{
-			if (token_len > 0)
-			{
-				current_token[token_len] = '\0';
-				tokens[token_index++] = ft_strdup(current_token);
-				ft_memset(current_token, 0, MAX_TOKEN_LEN);
-				token_len = 0;
-			}
-			if (is_special_char(c) && c != ' ')
-			{
-				special_token[2] = {c, '\0'};
-				tokens[token_index++] = ft_strdup(special_token);
-			}
-			if (!in_quote && (c == '>' || c == '<'))
-				skip = lexer_redirections(tokens, &token_index, current_token, &token_len, c, input[i + 1]);
-			i += skip;
-			if (!in_quote && c == '|')
-				lexer_operator(tokens, &token_index, current_token, &token_len, c);
-			if (!in_quote && (c == '(' || c == ')'))
-				lexer_parentheses(tokens, &token_index, current_token, &token_len, c);
-			if (!in_quote && c == '$')
-				expand_variable(tokens, &token_index, current_token, &token_len, c, input, &i);
-			if (!error_lexor(tokens, &token_index, current_token, token_len))
-				return (NULL);
-		}
-		else
-			add_char_to_token(current_token, &token_len, c);
-		i++;
 	}
-	if (token_len > 0)
+}
+
+static size_t	ft_countstr(char const *str, t_commands *cmds)
+{
+	t_index	i_data;
+	size_t	counter;
+
+	i_data.i = 0;
+	counter = 0;
+	while (str[i_data.i])
 	{
-		current_token[token_len] = '\0';
-		tokens[token_index] = ft_strdup(current_token);
-		token_index++;
+		get_size(&i_data, str, cmds);
+		if (i_data.malloc_size != 0)
+			counter++;
 	}
-	tokens[token_index] = NULL;
-	return (tokens);
+	return (counter);
+}
+
+char	**tokenize_input(char const *input, t_commands *cmds)
+{
+	char	**str;
+	size_t	i;
+
+	if (!input)
+		return (NULL);
+	lexer_redirections(input, cmds);
+	lexer_operator(input, cmds);
+	if (cmds->exit_value != 0)
+		return (NULL);
+	i = ft_countstr(input, cmds);
+	lexer_parentheses(input, cmds);
+	if (cmds->exit_value != 0)
+		return (NULL);
+	str = (char **)malloc((i + 1) * sizeof(char *));
+	if (str == NULL)
+		return (NULL);
+	ft_split2(str, input, i, cmds);
+	if (str == NULL)
+		return (NULL);
+	add_token(input, str, i);
 }

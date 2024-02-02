@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/01 10:28:59 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 13:23:44 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,13 @@ typedef struct s_commands
 	t_redirect		*io;
 	t_cmd			*cmd;
 }	t_commands;
+
+typedef struct s_index
+{
+	size_t	i;
+	size_t	malloc_size;
+	size_t	j;
+}	t_index;
 
 typedef struct s_num_parenth
 {
