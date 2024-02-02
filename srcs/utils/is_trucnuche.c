@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 13:36:43 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:36:43 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 14:46:42 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,12 @@ bool	is_in_out_file(t_redirect *io, t_commands *cmds, bool free)
 		return (false);
 	}
 	return (true);
+}
+
+bool	is_redirection_cmd(t_commands *cmds, int i)
+{
+	if (cmds->cmd[i].redirections[0])
+		return (true);
+	else
+		return (false);
 }

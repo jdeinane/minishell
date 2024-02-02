@@ -6,29 +6,38 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:09:59 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 00:03:02 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 14:45:07 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	builtin_echo(char **av)
+static bool	n_option(t_commands *cmds, int num_cmd)
 {
-	bool (newline) = true;
-	int (i) = 1;
-	if (av[1] != NULL && ft_strcmp(av[1], "-n") == 0)
-	{
-		newline = false;
+	if (cmds->cmd[num_cmd].args[1]
+		&& ft_strncmp(cmds->cmd[num_cmd].args[1], "-n", 3) == 0)
+		return (true);
+	return (false);
+}
+
+int	builtin_echo(t_commands *cmds, int num_cmd)
+{
+	int		i;
+	bool	n;
+
+	n = n_option(cmds, num_cmd);
+	if (n == true)
 		i = 2;
-	}
-	while (av[i] != NULL)
+	else
+		i = 1;
+	while (cmds->cmd[num_cmd].args[i])
 	{
-		write(STDOUT, av[i], ft_strlen(av[i]));
-		if (av[i + 1] != NULL)
-			write(STDOUT, " ", 1);
+		ft_putstr_fd(cmds->cmd[num_cmd].args[i], STDOUT_FILENO);
+		if (cmds->cmd[num_cmd].args[i + 1])
+			ft_putchar_fd(' ', STDOUT_FILENO);
 		i++;
 	}
-	if (newline)
-		write(STDOUT, "\n", 1);
+	if (n == false)
+		ft_putchar_fd('\n', STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }
