@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:41:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:29:08 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 13:29:37 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	handle_quotes(t_index *i_data, const char *str, t_commands *cmds)
 {
 	i_data->malloc_size++;
-	if (s[i_data->i++] == '\'')
+	if (str[i_data->i++] == '\'')
 	{
 		while (str[i_data->i] && str[i_data->i++] != '\'')
 			i_data->malloc_size++;
