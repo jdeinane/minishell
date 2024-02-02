@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:56:03 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 15:03:30 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	execute(t_data *data, t_commands *cmds)
 			if (status_code != 0)
 				g_status_code = status_code;
 			if (cmds->num_exec < cmds->num_cmds)
-				verify_operators(data, cmds, cmds->num_exec);
+				check_operators(data, cmds, cmds->num_exec);
 		}
 	}
 	return (g_status_code);
