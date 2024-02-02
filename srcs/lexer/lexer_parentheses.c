@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 10:48:17 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:39:34 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 13:59:33 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	handle_quotes(t_index *i_data, const char *str)
 		i_data->i++;
 }
 
-static void	parenthesis_errors(const char *s, t_commands *cmds, \
+static void	parentheses_errors(const char *s, t_commands *cmds, \
 							t_index *i_data)
 {
 	if (s[i_data->i] == '(' || s[i_data->i] == ')')
@@ -53,7 +53,7 @@ static void	parenthesis_errors(const char *s, t_commands *cmds, \
 	}
 }
 
-static void	handle_parenthesis(const char *s, t_commands *cmds, t_index \
+static void	handle_parentheses(const char *s, t_commands *cmds, t_index \
 			*i_data)
 {
 	int	i;
@@ -63,21 +63,21 @@ static void	handle_parenthesis(const char *s, t_commands *cmds, t_index \
 	while (s[i_data->i] && s[i_data->i] == ' ')
 		i_data->i++;
 	if (s[i_data->i] && s[i_data->i] == ')')
-		parenthesis_errors(s, cmds, i_data);
+		parentheses_errors(s, cmds, i_data);
 	while (s[i_data->i] && s[i_data->i] != ')')
 	{
 		if (s[i_data->i] == '\'' || s[i_data->i] == '\"')
 			handle_quotes(i_data, s);
 		if (s[i_data->i++] == '(')
-			handle_parenteshis(s, cmds, i_data);
+			handle_parentheses(s, cmds, i_data);
 	}
 	if (!s[i_data->i] && s[i_data->i - 1] != ')')
-		parenthesis_errors(s, cmds, i_data);
+		parentheses_errors(s, cmds, i_data);
 	while (s[i_data->i + i] && (s[i_data->i + i] != '&' && s[i_data->i + i] \
 			!= '|'))
 		i++;
 	if (!s[i_data->i + i])
-		parenthesis_errors(s, cmds, i_data);
+		parentheses_errors(s, cmds, i_data);
 	else
 		i_data->i++;
 }
@@ -94,7 +94,7 @@ void	lexer_parentheses(const char *str, t_commands *cmds)
 		if (str[i_data.i] == ')')
 			parentheses_errors(str, cmds, &i_data);
 		if (str[i_data.i] == '(')
-			handle_parenteshes(str, cmds, &i_data);
+			handle_parentheses(str, cmds, &i_data);
 		while (str[i_data.i] && str[i_data.i] != '&' && str[i_data.i] != '|')
 		{
 			if (str[i_data.i] == ')' || str[i_data.i] == '(')

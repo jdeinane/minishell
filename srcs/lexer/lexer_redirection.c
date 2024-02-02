@@ -6,12 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 10:29:34 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:42:38 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 13:43:20 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 static void	handle_quotes(t_index *i_data, const char *s)
 {
