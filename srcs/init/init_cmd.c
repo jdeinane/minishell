@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 21:49:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:30:34 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 15:47:36 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 static void	change_cmd(t_commands *cmds, int num_cmd)
 {

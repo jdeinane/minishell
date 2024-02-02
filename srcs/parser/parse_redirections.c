@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 20:40:47 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:53:52 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:20:50 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 typedef struct s_tmp_index
 {

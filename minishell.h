@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 15:05:10 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:16:27 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ typedef struct s_num_parenth
 extern int	g_status_code;
 
 // MAIN
-void		minishell(int ac, char **av, char **envp);
 int			main(int ac, char **av, char **envp);
+int			minishell(int argc, char **argv, char **envp);
 
 // BUILTINS
 int			builtin_cd(t_data *data, t_commands *cmds, int i);
@@ -124,38 +124,69 @@ int			builtin_export(t_data *data, t_commands *cmds, int num_cmd);
 int			builtin_pwd(void);
 int			builtin_unset(t_data *data, t_commands *cmds, int num_cmd);
 
-// EXEC
-
-
 // ENV
-bool		is_valid_var_name(char *name);
-char		*get_env_var_value(char **envp, char *var);
-bool		set_env_var(t_data *data, char *key, char *value);
-int			env_var_count(char **envp);
-int			get_env_var_index(char **env, char *var);
 void		env_var_remove(t_data *data, int index);
 char		**env_var_realloc(t_data *data, int len);
+int			get_env_var_index(char **env, char *var);
+int			env_var_count(char **envp);
+char		*get_env_var_value(char **envp, char *var);
+
+// EXEC
+bool		is_builtin_empty(t_commands *cmds);
+void		exec_builtin_empty(t_commands *cmds, t_data *data);
+int			exec_builtins(t_data *data, t_commands *cmds, int num_cmd);
+int			exec_child(t_data *data, t_commands *cmds, int num_cmd);
+int			execute_local(t_data *data, t_commands *cmds, int num_cmd);
+char		*get_cmd_path(t_commands *cmds, int index);
+int			execute_path(t_data *data, t_commands *cmds, int num_cmd);
+int			execute(t_data *data, t_commands *cmds);
+int			execute_cmd(t_data *data, t_commands *cmds, int num_cmd);
 
 // INIT
-
+void		init_cmd(t_data *data, t_commands *cmds, int num_cmd);
+void		init_single_cmd(t_data *data, t_commands *cmds, int num_cmd);
+void		init_commands(t_data *data, t_commands *cmds);
+bool		init_path(t_data *data);
+bool		init_data(t_data *data, char **envp);
+void		init_parenth(int *i, t_num_parenth *num_p);
+void		init_pipes(t_commands *cmds);
+void		init_redirections(t_commands *cmds);
 
 // LEXER
-
+void		add_token(char const *input, char **str, size_t i);
+void		handle_errors(t_index *i_data, const char *str, t_commands *cmds);
+void		quotes_error(t_index *i_data, const char *str, t_commands *cmds);
+void		lexer_operators(const char *str, t_commands *cmds);
+void		lexer_parentheses(const char *str, t_commands *cmds);
+void		lexer_redirections(const char *str, t_commands *cmds);
+char		**tokenize_input(char const *input, t_commands *cmds);
 
 // PARSER
+void		add_arg_to_cmd(char *str, char *new_str);
+void		add_parsed_token(char *s, char **str, size_t len);
+void		parse_dollar_sign(t_data *data, t_commands *cmds, int n);
+char		*parse_env(t_index *i_data, char *s, t_data *data);
+void		find_export_cmd(t_commands *cmds, int num_cmd);
+char		**parse_full_redirections(char *str);
+char		*get_cmd_path(t_commands *cmds, int index);
+void		parse_redirections(char *input, char **str, size_t i);
+char		*rm_redirections(char *str);
+void		parse_split(char const *input, char **str, size_t i);
+char		**parse_whitespace(char const *s);
+char		**parser(char *input);
 
 // PIPES
-void		create_pipes(t_commands *cmds, int index);
 void		check_pipes(t_commands *cmds, int index);
 void		close_pipes(t_commands *cmds);
 void		close_pipes_fd(t_commands *cmds);
+void		create_pipes(t_commands *cmds, int index);
 
 // REDIRECTIONS
-int			handle_input(t_commands *cmds, char *part);
-int			handle_output(t_commands *cmds, char *part, bool trunc);
-void		handle_heredoc(t_commands *cmds, char *part);
 bool		is_redirection_cmd(t_commands *cmds, int i);
 void		handle_redirections(t_commands *cmds, int j);
+void		handle_heredoc(t_commands *cmds, char *part);
+int			handle_input(t_commands *cmds, char *part);
+int			handle_output(t_commands *cmds, char *part, bool trunc);
 void		redirect_io(t_redirect *io, int index_cmd);
 void		restore_io(t_redirect *io);
 bool		check_file(t_redirect *io, t_commands *cmds, bool free);
@@ -195,5 +226,25 @@ void		signals_wait_cmd(void);
 void		signals_run_cmd(void);
 
 // UTILS
+bool		check_args(int ac, char **av);
+void		check_operators(t_data *data, t_commands *cmds, int num_cmd);
+void		free_io(t_redirect *io);
+void		free_cmds(t_commands *cmds);
+void		close_fds(t_commands *cmds, bool reset_io);
+void		free_ptr(void *ptr);
+void		free_str(char **str);
+bool		clear_prev_input(t_redirect *io, bool in_file);
+void		free_data(t_data *data, bool exit_shell);
+void		free_pipes(t_commands *cmds);
+int			error_msg(char *cmd, char *spec, char *msg, int status_code);
+void		exit_minishell(t_data *data, int status_code);
+void		free_exit(t_data *data, t_commands *cmds, int status_code);
+char		**get_paths(char **envp);
+char		*get_prompt(void);
+bool		input_handler(t_data *data);
+int			is_space(int c);
+bool		is_builtin(char *cmd);
+bool		is_in_out_file(t_redirect *io, t_commands *cmds, bool free);
+bool		is_redirection_cmd(t_commands *cmds, int i);
 
 #endif

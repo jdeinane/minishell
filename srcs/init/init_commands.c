@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:39:56 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 17:26:42 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 15:47:59 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static char	*trim_input(char *input)
 {
 	char	*new_input;
 	int		aux;
-	int 	start;
-	int 	end;
+	int		start;
+	int		end;
 	int		i;
 
 	aux = ft_strlen(input) - 1;

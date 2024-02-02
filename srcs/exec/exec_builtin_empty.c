@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin_empty.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:39:13 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:52:11 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:23:42 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,3 @@ void	exec_builtin_empty(t_commands *cmds, t_data *data)
 		}
 	}
 }
-

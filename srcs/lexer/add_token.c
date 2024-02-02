@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 17:32:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:33:00 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 15:49:19 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ typedef struct s_tmp_index
 	size_t	o;
 	size_t	j;
 }	t_tmp_index;
-
 
 static void	copy_quotes(char const *s, char **str, t_tmp_index *data)
 {

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   add_arg_to_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 20:29:36 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:28:00 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:19:56 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
 typedef struct s_tmp_index
 {
 	size_t	i;

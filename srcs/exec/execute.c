@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 15:03:30 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 15:46:57 by brjoves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ int	execute_cmd(t_data *data, t_commands *cmds, int num_cmd)
 	exit_shell(data, status_code);
 	return (status_code);
 }
-
