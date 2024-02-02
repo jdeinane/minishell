@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/02/01 10:18:52 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/02/02 15:05:52 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,63 +33,6 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/init/init_parentheses.c			\
 				srcs/init/init_redirections.c			\
 				srcs/init/init_pipes.c					\
-				srcs/lexer/handle_special_chars.c		\
-				srcs/lexer/process_input.c				\
-				srcs/main/init_minishell.c				\
-				srcs/main/main.c						\
-				srcs/parser/add_arg_to_cmd.c			\
-				srcs/parser/check_cmd.c					\
-				srcs/parser/finalize_current_cmd.c		\
-				srcs/parser/handle_redirection.c		\
-				srcs/parser/init_new_cmd.c				\
-				srcs/parser/parse_tokens.c				\
-				srcs/parser/prepare_for_next.c			\
-				srcs/parser/reset_parsing_state.c		\
-				srcs/pipes/close_pipes.c				\
-				srcs/pipes/create_pipes.c				\
-				srcs/pipes/exec_pipes_redirect.c		\
-				srcs/pipes/setup_pipe_redir.c			\
-				srcs/redirection/append.c				\
-				srcs/redirection/heredoc.c				\
-				srcs/redirection/input.c				\
-				srcs/redirection/output.c				\
-				srcs/redirection/redirection_handler.c	\
-				srcs/signals/signal_handler.c			\
-				srcs/libft/ft_calloc.c					\
-				srcs/libft/ft_isalnum.c					\
-				srcs/libft/ft_isdigit.c					\
-				srcs/libft/ft_memcpy.c					\
-				srcs/libft/ft_putchar.c					\
-				srcs/libft/ft_putendl_fd.c				\
-				srcs/libft/ft_strcat.c					\
-				srcs/libft/ft_strchr.c					\
-				srcs/libft/ft_strcmp.c					\
-				srcs/libft/ft_strcpy.c					\
-				srcs/libft/ft_strdup.c					\
-				srcs/libft/ft_strlen.c					\
-				srcs/libft/ft_strncmp.c					\
-				srcs/libft/ft_strndup.c					\
-				srcs/libft/ft_strtok.c					\
-				srcs/libft/ft_strtrim.c					\
-				srcs/libft/ft_isalpha.c					\
-				srcs/libft/ft_split.c					\
-				srcs/libft/ft_strncpy.c					\
-				srcs/libft/ft_putstr_fd.c				\
-				srcs/libft/ft_strtol.c					\
-				srcs/libft/ft_strjoin.c					\
-				srcs/libft/ft_memset.c					\
-				srcs/libft/ft_strsjoin.c				\
-				srcs/libft/ft_atol.c					\
-				srcs/libft/ft_strlcpy.c					\
-				srcs/utils/check_args.c					\
-				srcs/utils/clean.c						\
-				srcs/utils/exit_minishell.c				\
-				srcs/utils/get_prompt.c					\
-				srcs/utils/free_all.c					\
-				srcs/utils/input_handler.c				\
-				srcs/utils/is_trucnuche.c				\
-				srcs/utils/path.c						\
-				srcs/utils/error_msg.c					\
 
 OBJS		=	$(SRCS:.c=.o)
 
