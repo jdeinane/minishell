@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:26:19 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:27:40 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 14:28:55 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	ft_split2(char **str, char *s, size_t countc)
 	}
 }
 
-char	**handle_redirection(char *str)
+char	**parse_full_redirections(char *str)
 {
 	char	**str;
 	size_t	i;
