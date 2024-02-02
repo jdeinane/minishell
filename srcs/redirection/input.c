@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:46:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 16:43:14 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 18:47:21 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	open_infile(t_commands *cmds, char *file)
 {
 	cmds->io->in_file = file;
-	if (cmds->io->in_file && cmds->io->in_file[0] != '\0')
+	if (cmds->io->in_file && cmds->io->in_file[0] == '\0')
 		return (error_msg(file, NULL, "ambiguous redirect", false));
 	cmds->io->fd_in = open(cmds->io->in_file, O_RDONLY);
 	if (cmds->io->fd_in == -1)
@@ -25,23 +25,31 @@ static int	open_infile(t_commands *cmds, char *file)
 
 static void	remove_quotes(char *str)
 {
-	char	*read_ptr;
-	char	*write_ptr;
+	char	last_reg;
 
-	read_ptr = str;
-	write_ptr = str;
-	if (str == NULL)
-		return ;
-	while (*read_ptr != '\0')
+	last_reg = 0;
+	while (*str && !last_reg)
 	{
-		if (*read_ptr == '\'' || *read_ptr == '\"')
+		if (*str == '\'' || *str == '"')
 		{
-			*write_ptr = *read_ptr;
-			write_ptr++;
+			last_reg = *str;
+			ft_memmove(str, str + 1, ft_strlen(str + 1) + 1);
 		}
-		read_ptr++;
+		else
+			str++;
 	}
-	*write_ptr = '\0';
+	while (*str && last_reg)
+	{
+		if (*str && *str == last_reg)
+		{
+			last_reg = 0;
+			ft_memmove(str, str + 1, ft_strlen(str + 1) + 1);
+		}
+		else
+			str++;
+	}
+	if (*str)
+		return (remove_quotes(str));
 }
 
 int	handle_input(t_commands *cmds, char *part)

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:15:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 16:43:48 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 18:37:06 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	open_outfile(t_commands *cmds, char *file, bool trunc)
 	if (cmds->io->fd_out == -1)
 		return (error_msg(cmds->io->out_file, NULL, strerror(errno),
 				false));
-	return (0);
+	return (-1);
 }
 
 int	handle_output(t_commands *cmds, char *part, bool trunc)

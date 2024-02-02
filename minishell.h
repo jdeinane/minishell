@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 17:37:26 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 18:48:21 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t len);
 char		*ft_itoa(int nb);
 char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+void		*ft_memmove(void *des, void *src, size_t len);
 
 // SIGNALS
 void		signals_wait_cmd(void);

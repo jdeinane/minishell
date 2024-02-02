@@ -6,7 +6,7 @@
 #    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/02/02 17:35:37 by jubaldo          ###   ########.fr        #
+#    Updated: 2024/02/02 18:48:34 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/libft/ft_strtol.c					\
 				srcs/libft/ft_strtrim.c					\
 				srcs/libft/ft_substr.c					\
+				srcs/libft/ft_memmove.c					\
 
 OBJS		=	$(SRCS:.c=.o)
 
