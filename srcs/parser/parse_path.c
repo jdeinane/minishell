@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_parsing_state.c                              :+:      :+:    :+:   */
+/*   parse_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 20:19:47 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 10:06:39 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 14:22:06 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	reset_parsing_state(t_commands *cmd)
+char	*get_cmd_path(t_commands *cmds, int index)
 {
-	t_cmd	*current_cmd;
+	int		i;
+	char	*cmd_comp;
+	char	*cmd;
 
-	if (cmd->num_cmds > 0)
+	cmd = ft_strdup("/");
+	cmd = ft_strsjoin(cmd, cmds->cmd[index].args[0]);
+	i = 0;
+	if (cmds->paths)
 	{
-		current_cmd = &cmd->cmd[cmd->num_cmds - 1];
-		if (current_cmd->args)
+		while (cmds->paths[i])
 		{
-			free(current_cmd->args);
-			current_cmd->args = NULL;
-		}
-		if (current_cmd->redirections)
-		{
-			free(current_cmd->redirections);
-			current_cmd->redirections = NULL;
+			cmd_comp = ft_strjoin(cmds->paths[i], cmd);
+			if (access(cmd_comp, F_OK | X_OK) == 0)
+			{
+				free_ptr(cmd);
+				return (cmd_comp);
+			}
+			free_ptr(cmd_comp);
+			i++;
 		}
 	}
+	free_ptr(cmd);
+	return (NULL);
 }

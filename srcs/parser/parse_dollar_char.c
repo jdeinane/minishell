@@ -6,13 +6,13 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:01:03 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:11:04 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 14:20:22 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int	check_type(char c)
+static int	check_char(char c)
 {
 	if (c != '?')
 		return (ft_isalnum(c) || c == '_');
@@ -45,7 +45,7 @@ static void	handle_quotes(t_index *aux, t_commands *cmds, \
 		while (cmds->cmds[n][aux->i] != '\"')
 		{
 			if (cmds->cmds[n][aux->i] == '$' && cmds->cmds[n][aux->i + 1]
-				&& check_type(cmds->cmds[n][aux->i + 1]))
+				&& check_char(cmds->cmds[n][aux->i + 1]))
 				handle_dollar(aux, cmds, n, data);
 			else
 				aux->i++;
@@ -62,7 +62,7 @@ void	parse_dollar_sign(t_data *data, t_commands *cmds, int n)
 	while (cmds->cmds[n][aux.i])
 	{
 		if (cmds->cmds[n][aux.i] == '$' && cmds->cmds[n][aux.i + 1]
-			&& check_type(cmds->cmds[n][aux.i + 1]))
+			&& check_char(cmds->cmds[n][aux.i + 1]))
 			handle_dollar(&aux, cmds, n, data);
 		if (cmds->cmds[n][aux.i] == '\'' || \
 			cmds->cmds[n][aux.i] == '\"')
@@ -70,7 +70,7 @@ void	parse_dollar_sign(t_data *data, t_commands *cmds, int n)
 		if (cmds->cmds[n][aux.i] == '$')
 		{
 			if (cmds->cmds[n][aux.i + 1] &&
-				!check_type(cmds->cmds[n][aux.i + 1]))
+				!check_char(cmds->cmds[n][aux.i + 1]))
 				aux.i++;
 			if (!cmds->cmds[n][aux.i + 1])
 				aux.i++;
