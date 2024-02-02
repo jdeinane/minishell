@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:59:31 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 16:16:27 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:37:26 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ char		**env_var_realloc(t_data *data, int len);
 int			get_env_var_index(char **env, char *var);
 int			env_var_count(char **envp);
 char		*get_env_var_value(char **envp, char *var);
+bool		set_env_var(t_data *data, char *key, char *value);
+bool		is_valid_var_name(char *name);
 
 // EXEC
 bool		is_builtin_empty(t_commands *cmds);
@@ -167,9 +169,8 @@ void		add_parsed_token(char *s, char **str, size_t len);
 void		parse_dollar_sign(t_data *data, t_commands *cmds, int n);
 char		*parse_env(t_index *i_data, char *s, t_data *data);
 void		find_export_cmd(t_commands *cmds, int num_cmd);
-char		**parse_full_redirections(char *str);
-char		*get_cmd_path(t_commands *cmds, int index);
-void		parse_redirections(char *input, char **str, size_t i);
+void		parse_full_redirections(char *input, char **str, size_t i);
+char		**parse_redirections(char *str);
 char		*rm_redirections(char *str);
 void		parse_split(char const *input, char **str, size_t i);
 char		**parse_whitespace(char const *s);
@@ -220,6 +221,9 @@ void		ft_putstr_fd(char *s, int fd);
 int			ft_isalpha(int c);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t len);
+char		*ft_itoa(int nb);
+char		**ft_split(char const *s, char c);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 // SIGNALS
 void		signals_wait_cmd(void);
@@ -245,6 +249,5 @@ bool		input_handler(t_data *data);
 int			is_space(int c);
 bool		is_builtin(char *cmd);
 bool		is_in_out_file(t_redirect *io, t_commands *cmds, bool free);
-bool		is_redirection_cmd(t_commands *cmds, int i);
 
 #endif

@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclpy.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 16:26:32 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 16:27:53 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/02/02 17:33:35 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/02/02 17:34:04 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t			src_len;
-	unsigned int	i;
+	size_t	s_size;
+	char	*result;
 
-	i = 0;
-	if (!dst || !src)
-		return (0);
-	src_len = ft_strlen(src);
-	if (len <= 0)
-		return (src_len);
-	while (src[i] && i < (len - 1))
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (src_len);
+	s_size = ft_strlen(s);
+	if (start > s_size)
+		return (ft_strdup(""));
+	if ((s_size - start) < len)
+		len = s_size - start;
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	ft_strlcpy(result, s + start, len + 1);
+	return (result);
 }

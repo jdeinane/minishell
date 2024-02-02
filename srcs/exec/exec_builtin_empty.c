@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin_empty.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:39:13 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 16:23:42 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:44:26 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static void	cd_case(t_commands *cmds, t_data *data)
 
 	cmds->pid[0] = fork();
 	if (cmds->pid[0] == -1)
-		error_msg_cmd("fork", NULL, strerror(errno), EXIT_FAILURE);
+		error_msg("fork", NULL, strerror(errno), EXIT_FAILURE);
 	else if (cmds->pid[0] == 0)
 	{
 		if (is_redirection_cmd(cmds, 0)
-			&& check_in_out_file(cmds->io, cmds, true) == false)
-			exit_shell(data, EXIT_FAILURE);
+			&& is_in_out_file(cmds->io, cmds, true) == false)
+			exit_minishell(data, EXIT_FAILURE);
 		redirect_io(cmds->io, 0);
 		close_fds(cmds, false);
 		path = get_env_var_value(data->env, PWD);
@@ -47,7 +47,7 @@ static void	cd_case(t_commands *cmds, t_data *data)
 		else
 			ft_putendl_fd(path, STDOUT);
 		free_cmds(cmds);
-		exit_shell(data, 0);
+		exit_minishell(data, 0);
 	}
 }
 

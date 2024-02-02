@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 10:29:34 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:43:20 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:07:15 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	redirections_errors(const char *s, t_commands *cmds, \
 	}
 }
 
-static void	handle_redirections(const char *str, t_commands *cmds, \
+static void	handle_redirection(const char *str, t_commands *cmds, \
 			t_index *i_data)
 {
 	i_data->i++;
@@ -61,7 +61,7 @@ static void	handle_redirections(const char *str, t_commands *cmds, \
 	if (str[i_data->i] && (str[i_data->i] == '&' || str[i_data->i] == '|') && \
 		(str[i_data->i - 1] == '<' || \
 		str[i_data->i - 1] == '>' || str[i_data->i - 1] == ' '))
-		redirections_errors(s, cmds, i_data);
+		redirections_errors(str, cmds, i_data);
 	if (str[i_data->i] && (str[i_data->i] == '<' || str[i_data->i] == '>') && \
 		(str[i_data->i - 1] == '<' || str[i_data->i - 1] == '>' || \
 		str[i_data->i - 1] == ' '))
@@ -78,7 +78,7 @@ void	lexer_redirections(const char *str, t_commands *cmds)
 	while (str[i_data.i])
 	{
 		if (str[i_data.i] && (str[i_data.i] == '<' || str[i_data.i] == '>'))
-			handle_redirections(str, cmds, &i_data);
+			handle_redirection(str, cmds, &i_data);
 		if (str[i_data.i] && (str[i_data.i] == '\'' || str[i_data.i] == '\"'))
 			handle_quotes(&i_data, str);
 		if (str[i_data.i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:39:56 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 15:47:59 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:02:33 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	init_commands(t_data *data, t_commands *cmds)
 	char		*new_input;
 
 	new_input = trim_input(data->user_input);
-	cmds->cmds = tokenize_input(new_input);
+	cmds->cmds = tokenize_input(new_input, cmds);
 	free(new_input);
 	i = 0;
 	if (cmds->exit_value == 0)

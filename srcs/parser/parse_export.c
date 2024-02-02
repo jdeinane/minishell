@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 20:23:56 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:25:31 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:19:15 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	find_export_cmd(t_commands *cmds, int num_cmd)
 	char	**tmp_parser;
 	int		i;
 
-	tmp_parser = rm_spaces(cmds->cmds[num_cmd]);
+	tmp_parser = parse_whitespace(cmds->cmds[num_cmd]);
 	i = 0;
 	if (!ft_strncmp("export\0", tmp_parser[0], 7))
 		add_quotes(cmds, num_cmd, tmp_parser);

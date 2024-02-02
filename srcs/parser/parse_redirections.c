@@ -3,78 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 20:40:47 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 16:20:50 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:28:04 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-typedef struct s_tmp_index
+static void	handle_quotes(t_index *i_data, char *s, int add_malloc, \
+					char special_char)
 {
-	size_t	i;
-	size_t	o;
-	size_t	j;
-}	t_tmp_index;
-
-static void	handle_quotes(t_tmp_index *data, char *s, char special_char)
-{
-	data->i++;
-	while (s[data->i] && s[data->i] != special_char)
-		data->i++;
-	data->i++;
-}
-
-static void	copy_quotes(char *s, char **str, t_tmp_index *data)
-{
-	data->i++;
-	if (s[data->i - 1] == '\'')
+	if (add_malloc == 1)
 	{
-		while (s[data->i] && s[data->i] != '\'')
-			str[data->j][data->o++] = s[data->i++];
+		i_data->i++;
+		while (s[i_data->i] && s[i_data->i++] != special_char)
+			i_data->malloc_size++;
 	}
 	else
 	{
-		while (s[data->i] && s[data->i] != '\"')
-			str[data->j][data->o++] = s[data->i++];
-	}
-	data->i++;
-}
-
-static void	ft_strcpy2(char *s, char **str, t_tmp_index *data)
-{
-	data->o = 0;
-	while (s[data->i] && (s[data->i] != '<' && s[data->i] != '>'))
-	{
-		if (s[data->i] == '\'' || s[data->i] == '\"')
-			handle_quotes(data, s, s[data->i]);
-		else
-			data->i++;
-	}
-	while (s[data->i] && (s[data->i] == '<' || s[data->i] == '>' || \
-			s[data->i] == ' ' ))
-		str[data->j][data->o++] = s[data->i++];
-	while (s[data->i] && s[data->i] != ' ')
-	{
-		if (s[data->i] == '\'' || s[data->i] == '\"')
-			copy_quotes(s, str, data);
-		else
-			str[data->j][data->o++] = s[data->i++];
+		i_data->i++;
+		while (s[i_data->i] && s[i_data->i++] != special_char)
+			;
 	}
 }
 
-void	parse_redirections(char *input, char **str, size_t i)
+static void	get_size(t_index *i_data, char *s)
 {
-	t_tmp_index	data;
-
-	data.i = 0;
-	data.j = 0;
-	while (data.j < i)
+	i_data->malloc_size = 0;
+	while (s[i_data->i] && s[i_data->i] != '<' && s[i_data->i] != '>')
 	{
-		ft_strcpy2(input, str, &data);
-		data.j++;
+		if (s[i_data->i] == '\'' || s[i_data->i] == '\"')
+			handle_quotes(i_data, s, 0, s[i_data->i]);
+		else
+			i_data->i++;
 	}
-	str[data.j] = NULL;
+	while (s[i_data->i] && (s[i_data->i] == '<' || s[i_data->i] == '>' || \
+			s[i_data->i] == ' ' ))
+	{
+		i_data->i++;
+		i_data->malloc_size++;
+	}
+	while (s[i_data->i] && s[i_data->i] != ' ')
+	{
+		if (s[i_data->i] == '\'' || s[i_data->i] == '\"')
+			handle_quotes(i_data, s, 1, s[i_data->i]);
+		else
+		{
+			i_data->malloc_size++;
+			i_data->i++;
+		}
+	}
+}
+
+static size_t	ft_countstr(char *s)
+{
+	t_index	i_data;
+	size_t	counter;
+
+	i_data.i = 0;
+	counter = 0;
+	while (s[i_data.i])
+	{
+		get_size(&i_data, s);
+		if (i_data.malloc_size != 0)
+			counter++;
+	}
+	return (counter);
+}
+
+static void	ft_split2(char **str, char *s, size_t countc)
+{
+	t_index	i_data;
+
+	i_data.i = 0;
+	i_data.j = 0;
+	while (i_data.j < countc)
+	{
+		get_size(&i_data, s);
+		str[i_data.j] = (char *)malloc((i_data.malloc_size + 1) * sizeof(char));
+		str[i_data.j][i_data.malloc_size] = '\0';
+		if (str[i_data.j++] == NULL)
+		{
+			str = NULL;
+			break ;
+		}
+	}
+}
+
+char	**parse_redirections(char *input)
+{
+	char	**str;
+	size_t	i;
+
+	if (!input)
+		return (NULL);
+	i = ft_countstr(input);
+	str = (char **)malloc((i + 1) * sizeof(char *));
+	if (!str)
+		return (NULL);
+	ft_split2(str, input, i);
+	if (str == NULL)
+		return (NULL);
+	parse_full_redirections(input, str, i);
+	return (str);
 }

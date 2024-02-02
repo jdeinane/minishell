@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_path.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 15:52:00 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 17:38:44 by jubaldo          ###   ########.fr       */
+/*   Created: 2024/01/31 16:26:32 by jubaldo           #+#    #+#             */
+/*   Updated: 2024/02/02 17:36:08 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	execute_path(t_data *data, t_commands *cmds, int num_cmd)
+size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {
-	cmds->cmd[num_cmd].path = get_cmd_path(cmds, num_cmd);
-	if (!cmds->cmd[num_cmd].path)
-		return (CMD_NOT_FOUND);
-	if (execve(cmds->cmd[num_cmd].path, \
-		cmds->cmd[num_cmd].args, data->env) == -1)
-		error_msg("execve", NULL, strerror(errno), errno);
-	return (EXIT_FAILURE);
+	size_t			src_len;
+	unsigned int	i;
+
+	i = 0;
+	if (!dst || !src)
+		return (0);
+	src_len = ft_strlen(src);
+	if (len <= 0)
+		return (src_len);
+	while (src[i] && i < (len - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (src_len);
 }

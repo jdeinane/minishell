@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 00:09:57 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 15:46:57 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:46:25 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,22 @@ int	execute_cmd(t_data *data, t_commands *cmds, int num_cmd)
 		create_pipes(cmds, num_cmd);
 	if (is_redirection_cmd(cmds, num_cmd)
 		&& is_in_out_file(cmds->io, cmds, true) == false)
-		exit_shell(data, EXIT_FAILURE);
+		exit_minishell(data, EXIT_FAILURE);
 	redirect_io(cmds->io, num_cmd);
 	close_fds(cmds, false);
 	if (is_builtin(cmds->cmd[num_cmd].args[0]))
-		status_code = exec_builtin(data, cmds, num_cmd);
+		status_code = exec_builtins(data, cmds, num_cmd);
 	else
 	{
 		if (ft_strchr(cmds->cmd[num_cmd].args[0], '/') == NULL)
 		{
-			status_code = exec_path_var_bin(data, cmds, num_cmd);
+			status_code = execute_path(data, cmds, num_cmd);
 			if (status_code != CMD_NOT_FOUND)
-				free_exit_cmd(data, cmds, status_code);
+				free_exit(data, cmds, status_code);
 		}
-		status_code = exec_local_bin(data, cmds, num_cmd);
+		status_code = execute_local(data, cmds, num_cmd);
 	}
 	free_cmds(cmds);
-	exit_shell(data, status_code);
+	exit_minishell(data, status_code);
 	return (status_code);
 }

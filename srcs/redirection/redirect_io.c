@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_io.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:54:00 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 17:29:03 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:43:58 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	redirect_io(t_redirect *io, int index_cmd)
 		return ;
 	io->stdin_backup = dup(STDIN_FILENO);
 	if (io->stdin_backup == -1)
-		error_msg_cmd("dup", "std-in-bkp", strerror(errno), false);
+		error_msg("dup", "std-in-bkp", strerror(errno), false);
 	io->stdout_backup = dup(STDOUT_FILENO);
 	if (io->stdout_backup == -1)
-		error_msg_cmd("dup", "std-out-bkp", strerror(errno), false);
+		error_msg("dup", "std-out-bkp", strerror(errno), false);
 	if (io->fd_in != -1)
 		if (dup2(io->fd_in, STDIN_FILENO) == -1)
-			error_msg_cmd("dup2", io->in_file, strerror(errno),
+			error_msg("dup2", io->in_file, strerror(errno),
 				EXIT_FAILURE);
 	if (io->fd_out != -1)
 		if (dup2(io->fd_out, STDOUT_FILENO) == -1)
-			error_msg_cmd("dup2", io->out_file, strerror(errno),
+			error_msg("dup2", io->out_file, strerror(errno),
 				EXIT_FAILURE);
 }
 

@@ -6,12 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:09:25 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:57:08 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:34:54 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 typedef struct s_tmp_index
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 21:49:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 15:47:36 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:42:57 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	change_cmd(t_commands *cmds, int num_cmd)
 {
 	char	*tmp_char;
 
-	tmp_char = rm_redirection(cmds->cmds[num_cmd]);
+	tmp_char = rm_redirections(cmds->cmds[num_cmd]);
 	free(cmds->cmds[num_cmd]);
 	cmds->cmds[num_cmd] = (char *)malloc(ft_strlen(tmp_char) * \
 						sizeof(char) + 1);
@@ -32,10 +32,10 @@ void	init_cmd(t_data *data, t_commands *cmds, int num_cmd)
 	i = num_cmd;
 	while (i < cmds->num_cmds)
 	{
-		cmds->cmd[i].redirections = handle_redirection(cmds->cmds[i]);
+		cmds->cmd[i].redirections = parse_redirections(cmds->cmds[i]);
 		change_cmd(cmds, i);
 		if (cmds->cmds[i][0] && cmds->cmds[i][0] != ' ')
-			handle_dollar_sign(data, cmds, i);
+			parse_dollar_sign(data, cmds, i);
 		cmds->cmd[i].args = parser(cmds->cmds[i]);
 		if (cmds->operators[i] && cmds->operators[i] == PIPE)
 			i++;
@@ -52,10 +52,10 @@ void	init_single_cmd(t_data *data, t_commands *cmds, int num_cmd)
 	i = num_cmd;
 	if (i < cmds->num_cmds)
 	{
-		cmds->cmd[i].redirections = handle_redirection(cmds->cmds[i]);
+		cmds->cmd[i].redirections = parse_redirections(cmds->cmds[i]);
 		change_cmd(cmds, i);
 		if (cmds->cmds[i][0] && cmds->cmds[i][0] != ' ')
-			handle_dollar_sign(data, cmds, i);
+			parse_dollar_sign(data, cmds, i);
 		cmds->cmd[i].args = parser(cmds->cmds[i]);
 	}
 }

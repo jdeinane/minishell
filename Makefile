@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+         #
+#    By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 21:59:24 by jubaldo           #+#    #+#              #
-#    Updated: 2024/02/02 16:23:00 by brjoves          ###   ########.fr        #
+#    Updated: 2024/02/02 17:35:37 by jubaldo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/exec/exec_builtins.c				\
 				srcs/exec/exec_child.c					\
 				srcs/exec/execute_local.c				\
-				srcs/exec/execute_path.c				\ 
+				srcs/exec/execute_path.c				\
 				srcs/exec/execute.c						\
 				srcs/init/init_cmd.c					\
 				srcs/init/init_commands.c				\
@@ -45,7 +45,7 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/main/minishell.c					\
 				srcs/parser/add_arg_to_cmd.c			\
 				srcs/parser/add_parsed_token.c			\
-				srcs/parser/parse_dollar_char.c			\
+				srcs/parser/parse_dollar_sign.c			\
 				srcs/parser/parse_env_exp.c				\
 				srcs/parser/parse_export.c				\
 				srcs/parser/parse_full_redirections.c	\
@@ -67,13 +67,42 @@ SRCS		=	srcs/builtins/cd.c 						\
 				srcs/utils/check_args.c					\
 				srcs/utils/check_operator.c				\
 				srcs/utils/clean.c						\
-				srcs/utils/clean2.c
+				srcs/utils/clean2.c 					\
 				srcs/utils/error_msg.c					\
 				srcs/utils/exit_minishell.c				\
 				srcs/utils/get_path.c					\
 				srcs/utils/get_prompt.c					\
 				srcs/utils/input_handler.c				\
 				srcs/utils/is_trucnuche.c				\
+				srcs/libft/ft_atol.c					\
+				srcs/libft/ft_calloc.c					\
+				srcs/libft/ft_isalnum.c					\
+				srcs/libft/ft_isalpha.c					\
+				srcs/libft/ft_isdigit.c					\
+				srcs/libft/ft_itoa.c					\
+				srcs/libft/ft_memset.c					\
+				srcs/libft/ft_memcpy.c					\
+				srcs/libft/ft_putchar.c					\
+				srcs/libft/ft_putendl_fd.c				\
+				srcs/libft/ft_putstr_fd.c				\
+				srcs/libft/ft_realloc.c					\
+				srcs/libft/ft_split.c					\
+				srcs/libft/ft_strchr.c					\
+				srcs/libft/ft_strcat.c					\
+				srcs/libft/ft_strlcpy.c					\
+				srcs/libft/ft_strcmp.c					\
+				srcs/libft/ft_strcpy.c					\
+				srcs/libft/ft_strdup.c					\
+				srcs/libft/ft_strjoin.c					\
+				srcs/libft/ft_strlen.c					\
+				srcs/libft/ft_strncmp.c					\
+				srcs/libft/ft_strncpy.c					\
+				srcs/libft/ft_strndup.c					\
+				srcs/libft/ft_strsjoin.c				\
+				srcs/libft/ft_strtok.c					\
+				srcs/libft/ft_strtol.c					\
+				srcs/libft/ft_strtrim.c					\
+				srcs/libft/ft_substr.c					\
 
 OBJS		=	$(SRCS:.c=.o)
 

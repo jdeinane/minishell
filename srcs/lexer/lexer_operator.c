@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:33:49 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:37:24 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:43:08 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	operators_errors(const char *s, t_commands *cmds, \
 	}
 	if (cmds->exit_value == 0 && !s[i_data->i])
 	{
-		cmds->exit_value = error_msg_cmd(NULL, NULL, \
+		cmds->exit_value = error_msg(NULL, NULL, \
 		"-minishell: syntax error: not expecting newline", 2);
 	}
 }

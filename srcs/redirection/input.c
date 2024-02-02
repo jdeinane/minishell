@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brjoves <brjoves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:46:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/26 17:53:58 by brjoves          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:43:14 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static int	open_infile(t_commands *cmds, char *file)
 {
 	cmds->io->in_file = file;
 	if (cmds->io->in_file && cmds->io->in_file[0] != '\0')
-		return (error_msg_cmd(file, NULL, "ambiguous redirect", false));
+		return (error_msg(file, NULL, "ambiguous redirect", false));
 	cmds->io->fd_in = open(cmds->io->in_file, O_RDONLY);
 	if (cmds->io->fd_in == -1)
-		return (error_msg_cmd(cmds->io->in_file, NULL, strerror(errno), false));
+		return (error_msg(cmds->io->in_file, NULL, strerror(errno), false));
 	return (-1);
 }
 

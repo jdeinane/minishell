@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 20:41:29 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 13:43:37 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:09:35 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static void	handle_quotes(t_index *i_data, const char *str, t_commands *cmds)
 		while (str[i_data->i] && str[i_data->i++] != '\"')
 				i_data->malloc_size++;
 	}
-	if (!str[i_data->i] && str[i_data->i - 1] != '\"' && str[i_data->i - 1] != '\'')
+	if (!str[i_data->i] && str[i_data->i - 1] != '\"'
+		&& str[i_data->i - 1] != '\'')
 		quotes_error(i_data, str, cmds);
 	else
 		i_data->malloc_size++;
 }
 
-static void	get_len(t_index *i_data, const char *str, t_commands *cmds)
+static void	get_size(t_index *i_data, const char *str, t_commands *cmds)
 {
 	i_data->malloc_size = 0;
 	while (str[i_data->i] && str[i_data->i] != '&' && str[i_data->i] != '|')
@@ -47,12 +48,11 @@ static void	get_len(t_index *i_data, const char *str, t_commands *cmds)
 		i_data->i = i_data->i + 2;
 	if (str[i_data->i] == '|' && str[i_data->i + 1] == '|')
 		i_data->i = i_data->i + 2;
-	if (str[i_data->i] == '|' && str[i_data->i - 1] != '|' && str[i_data->i - 1] \
-		!= '&')
+	if (str[i_data->i] == '|' && str[i_data->i - 1] != '|'
+		&& str[i_data->i - 1] != '&')
 		i_data->i++;
-	lexer_errors(i_data, str, cmds);
+	handle_errors(i_data, str, cmds);
 }
-
 
 static void	ft_split2(char **s1, char const *s2, size_t count, t_commands *cmds)
 {
@@ -62,7 +62,7 @@ static void	ft_split2(char **s1, char const *s2, size_t count, t_commands *cmds)
 	i_data.j = 0;
 	while (i_data.j < count)
 	{
-		get_len(&i_data, s2, cmds);
+		get_size(&i_data, s2, cmds);
 		s1[i_data.j] = (char *)malloc((i_data.malloc_size + 1) * sizeof(char));
 		s1[i_data.j][i_data.malloc_size] = '\0';
 		if (s1[i_data.j++] == NULL)
@@ -97,7 +97,7 @@ char	**tokenize_input(char const *input, t_commands *cmds)
 	if (!input)
 		return (NULL);
 	lexer_redirections(input, cmds);
-	lexer_operator(input, cmds);
+	lexer_operators(input, cmds);
 	if (cmds->exit_value != 0)
 		return (NULL);
 	i = ft_countstr(input, cmds);
@@ -111,4 +111,5 @@ char	**tokenize_input(char const *input, t_commands *cmds)
 	if (str == NULL)
 		return (NULL);
 	add_token(input, str, i);
+	return (str);
 }

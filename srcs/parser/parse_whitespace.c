@@ -6,12 +6,11 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:22:22 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 14:23:46 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:18:58 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 static void	handle_quotes(t_index *i_data, const char *s)
 {
@@ -49,7 +48,7 @@ static void	get_size(t_index *i_data, const char *s)
 static size_t	ft_countstr(char const *s)
 {
 	t_index	i_data;
-	size_t			counter;
+	size_t	counter;
 
 	i_data.i = 0;
 	counter = 0;
@@ -84,17 +83,17 @@ static void	ft_split2(char **str, char const *s, size_t count)
 char	**parse_whitespace(char const *s)
 {
 	char	**str;
-	size_t	countstr;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
-	countstr = ft_countstr(s);
-	str = (char **)malloc((countstr + 1) * sizeof(char *));
+	i = ft_countstr(s);
+	str = (char **)malloc((i + 1) * sizeof(char *));
 	if (!str)
 		return (NULL);
-	ft_split2(str, s, countstr);
+	ft_split2(str, s, i);
 	if (str == NULL)
 		return (NULL);
-	parse_split(s, str, countstr);
+	parse_split(s, str, i);
 	return (str);
 }
