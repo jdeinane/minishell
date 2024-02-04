@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:15:05 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 18:37:06 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:24:56 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 static int	open_outfile(t_commands *cmds, char *file, bool trunc)
 {
 	cmds->io->out_file = file;
-	if (cmds->io->out_file && cmds->io->out_file[0] != '\0')
+	if (cmds->io->out_file && cmds->io->out_file[0] == '\0')
 		return (error_msg(file, NULL, "ambiguous redirect", false));
 	if (trunc == true)
 		cmds->io->fd_out = open(cmds->io->out_file, O_WRONLY | O_CREAT
-				| O_TRUNC, 0644);
+				| O_TRUNC, 0664);
 	else
 		cmds->io->fd_out = open(cmds->io->out_file, O_WRONLY | O_CREAT
-				| O_APPEND, 0644);
+				| O_APPEND, 0664);
 	if (cmds->io->fd_out == -1)
 		return (error_msg(cmds->io->out_file, NULL, strerror(errno),
 				false));
 	return (-1);
 }
+
 
 int	handle_output(t_commands *cmds, char *part, bool trunc)
 {

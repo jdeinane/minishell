@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:53:53 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/02 16:37:23 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:13:25 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ static bool	input_is_dir(char *cmd)
 static int	valid_cmd_not_found(t_data *data, char *cmd)
 {
 	if (ft_strchr(cmd, '/') == NULL
-		&& get_env_var_index(data->env, "PATH") == -1)
+		&& get_env_var_index(data->env, "PATH") != -1)
 		return (error_msg(cmd, NULL, "command not found", CMD_NOT_FOUND));
 	if (access(cmd, F_OK) != 0)
-		return (error_msg(cmd, \
-			NULL, "No such file or directory", CMD_NOT_FOUND));
+		return (error_msg(cmd, NULL, strerror(errno), CMD_NOT_FOUND));
 	else if (input_is_dir(cmd))
-		return (error_msg(cmd, NULL, "is a directory", CMD_NOT_EXEC));
+		return (error_msg(cmd, NULL, "Is a directory", CMD_NOT_EXEC));
 	else if (access(cmd, X_OK) != 0)
-		return (error_msg(cmd, NULL, "Permission denied", CMD_NOT_EXEC));
+		return (error_msg(cmd, NULL, strerror(errno), CMD_NOT_EXEC));
 	return (0);
 }
 
