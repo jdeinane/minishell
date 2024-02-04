@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 11:57:50 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/31 10:04:47 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/04 18:37:53 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*get_env_var_value(char **envp, char *var)
 		if (ft_strncmp(tmp, envp[i], ft_strlen(tmp)) == 0)
 		{
 			free_ptr(tmp);
-			result = ft_strchr(envp[i], '=');
+			result = ft_strchr(envp[i], '=') + 1;
 			return (result);
 		}
 		i++;
