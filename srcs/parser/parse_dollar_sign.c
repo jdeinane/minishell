@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:01:03 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/02/04 17:07:25 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/05 17:50:13 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,19 @@ static void	handle_dollar(t_index *i_data, t_commands *cmds, \
 	free(tmp);
 }
 
-static void	handle_quotes(t_index *aux, t_commands *cmds, \
-					int n, t_data *data)
+static void handle_quotes(t_index *aux, t_commands *cmds, int n, t_data *data)
 {
-	if (cmds->cmds[n][aux->i++] == '\'')
-		while (cmds->cmds[n][aux->i] != '\'')
-			aux->i++;
-	else
-	{
-		while (cmds->cmds[n][aux->i] != '\"')
-		{
-			if (cmds->cmds[n][aux->i] == '$' && cmds->cmds[n][aux->i + 1]
-				&& check_char(cmds->cmds[n][aux->i + 1]))
-				handle_dollar(aux, cmds, n, data);
-			else
-				aux->i++;
-		}
-	}
+    if (cmds->cmds[n][aux->i++] == '\'') {
+    } else {
+        while (aux->i < strlen(cmds->cmds[n]) && cmds->cmds[n][aux->i] != '\"') {
+            if (cmds->cmds[n][aux->i] == '$' && cmds->cmds[n][aux->i + 1]
+                && check_char(cmds->cmds[n][aux->i + 1])) {
+                handle_dollar(aux, cmds, n, data);
+            } else {
+                aux->i++;
+            }
+        }
+    }
 }
 
 void	parse_dollar_sign(t_data *data, t_commands *cmds, int n)

@@ -6,7 +6,7 @@
 /*   By: jubaldo <jubaldo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:22:45 by jubaldo           #+#    #+#             */
-/*   Updated: 2024/01/23 18:22:56 by jubaldo          ###   ########.fr       */
+/*   Updated: 2024/02/05 17:52:00 by jubaldo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ char	*ft_strdup(const char *src)
 	int		len;
 
 	i = 0;
-	len = 0;
+	if (!src)
+		return (NULL);
+	len = ft_strlen(src);
 	while (src[len])
 		len++;
 	dup = malloc(sizeof(*dup) * (len + 1));
