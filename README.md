@@ -34,7 +34,7 @@ The project requires the implementation of several shell builtins like `cd`, `ec
 #### Error Handling
 Robust error handling is crucial in creating a stable and user-friendly shell. Students must anticipate and gracefully handle a wide range of possible errors, from invalid commands to file permission issues. This aspect of the project underscores the importance of defensive programming and user-centric design.
 
-### Why This Project Is Invaluable For Beginners
+### What do we Personnaly Gain from this Project?
 
 Despite its challenges, the Minishell project is an invaluable learning opportunity for students, especially those new to coding, because it:
 
