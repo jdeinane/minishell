@@ -33,7 +33,7 @@ This is the part where most student split up the work with their mate: one handl
 The project requires the implementation of several shell builtins like `cd`, `echo`, `exit`, `env`, and more. Each of these builtins has its own set of rules and behaviors, which must be replicated accurately. For us, it was the "easiest" part.
 
 #### Error Handling
-Robust error handling is crucial in creating a stable and user-friendly shell. And also for scary students/evaluators that wants nothing more but to break our little baby *(our minishell)*. Everybody in 42 Paris says that it's impossible to have a perfect-non-breaking-minishell; which I agree with. That's why it's important to ask your friends/peers to test things you couldn't even imagine before evaluating.
+Robust error handling is crucial in creating a stable and user-friendly shell. And also for scary students/evaluators that wants nothing more but to break our little baby *(minishell)*. Everybody in 42 Paris says that it's impossible to have a perfect-non-breaking-minishell; which I agree with. That's why it's important to ask your friends/peers to test things you couldn't even imagine before evaluating.
 
 ### What do we Personnaly Gain from this Project?
 
